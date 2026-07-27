@@ -147,7 +147,7 @@ python scripts/run_benchmark.py --seeds 1,2,3,4,5 \
 项目提供基于 Debian Linux + Python 3.11 的 Docker 环境，镜像内包含测试、Qiskit Aer 和完整演示依赖：
 
 ```bash
-# 构建 Linux 镜像
+# 构建 Linux 镜像（Docker 会按当前主机架构选择 arm64 或 amd64）
 docker build -t q-discovery-agent:linux .
 
 # 运行默认 Qiskit Aer 演示
@@ -171,7 +171,16 @@ python scripts/run_demo.py --output artifacts/linux-demo.json
 
 壁仞平台需要使用主办方提供或认可的 Linux 基础镜像。确认基础镜像包含 Python 3.11 和 Debian/Ubuntu 软件包管理器后，可通过 `--build-arg BASE_IMAGE=<官方镜像>` 复用同一应用层；这属于部署适配入口，不代表当前镜像已经完成壁仞驱动或 GPU 后端适配。
 
-本镜像已完成真实构建和容器内验证：Linux ARM64、Python 3.11.15、Qiskit 2.5.1、Qiskit Aer 0.17.2，8 个测试通过，demo 状态为 `verified`，五种子最终推荐可行率为 100%。完整记录见 [`submission/results/linux_environment_report.md`](./submission/results/linux_environment_report.md)。
+本镜像已完成真实构建和容器内验证：Linux ARM64，以及面向 Intel/AMD CPU 的 Linux AMD64（x86_64）均已通过验证。两种架构均使用 Python 3.11.15、Qiskit 2.5.1、Qiskit Aer 0.17.2；8 个测试通过，demo 状态为 `verified`。完整记录见 [`submission/results/linux_environment_report.md`](./submission/results/linux_environment_report.md)。
+
+Intel 和 AMD 的主流 CPU 都属于 x86_64（Docker 术语为 `linux/amd64`），因此不需要分别维护 Intel 版和 AMD 版。可在 Intel PC/服务器、AMD Ryzen/EPYC 服务器，或 Windows Docker Desktop/WSL2 的 Linux 容器中运行：
+
+```bash
+docker build --platform linux/amd64 -t q-discovery-agent:linux-amd64 .
+docker run --rm --platform linux/amd64 q-discovery-agent:linux-amd64
+```
+
+这里的兼容性指 CPU 运行和 Qiskit Aer 的 CPU 模拟；AMD GPU 的 ROCm 加速、Intel GPU 加速和壁仞 GPU 后端属于另外的硬件适配工作。
 
 ## 运行 API 与 UI
 
