@@ -1,0 +1,10 @@
+.git
+.venv
+__pycache__
+*.py[cod]
+.pytest_cache
+.ruff_cache
+artifacts
+*.egg-info
+.DS_Store
+submission/docs/*.pdf

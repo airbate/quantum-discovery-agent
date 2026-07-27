@@ -27,7 +27,7 @@ Q-Discovery Agent 不只是一个“会调用量子线路的聊天机器人”�
 | 五种子最终推荐可行率 | `100%` |
 | 演示/完整评测墙钟时间 | 约 `1.05s` / `4.29s` |
 
-这些数字来自 macOS 本地运行，演示数据是合成数据；它们证明的是软件链路和原型的可复现性，不是化学性能、量子硬件结果或量子优势证据。
+表中时间来自 macOS 本地运行；同一推荐、验证状态和五种子可行率已在 Python 3.11 的 Docker Linux ARM64 环境复现。演示数据是合成数据；这些结果证明的是软件链路和原型的可复现性，不是化学性能、量子硬件结果或量子优势证据。
 
 ## 从一个实验批次，走向科研发现基础设施
 
@@ -142,6 +142,37 @@ python scripts/run_benchmark.py --seeds 1,2,3,4,5 \
 
 预期结果：`correctness passed`、演示状态 `verified`、五种子可行率 `1.0`。如果不安装 Qiskit，系统会运行带警告的 quantum-inspired fallback；该模式适合验证软件链路，不适合描述为量子模拟结果。
 
+## Linux 可复现环境
+
+项目提供基于 Debian Linux + Python 3.11 的 Docker 环境，镜像内包含测试、Qiskit Aer 和完整演示依赖：
+
+```bash
+# 构建 Linux 镜像
+docker build -t q-discovery-agent:linux .
+
+# 运行默认 Qiskit Aer 演示
+docker run --rm q-discovery-agent:linux
+
+# 启动 API
+docker run --rm -p 8000:8000 q-discovery-agent:linux \
+  uvicorn app.main:app --host 0.0.0.0 --port 8000
+
+# 一次执行正确性、demo 和五种子评测
+./scripts/run_linux.sh
+```
+
+服务器也可使用 Conda：
+
+```bash
+conda env create -f environment.yml
+conda activate q-discovery-agent
+python scripts/run_demo.py --output artifacts/linux-demo.json
+```
+
+壁仞平台需要使用主办方提供或认可的 Linux 基础镜像。确认基础镜像包含 Python 3.11 和 Debian/Ubuntu 软件包管理器后，可通过 `--build-arg BASE_IMAGE=<官方镜像>` 复用同一应用层；这属于部署适配入口，不代表当前镜像已经完成壁仞驱动或 GPU 后端适配。
+
+本镜像已完成真实构建和容器内验证：Linux ARM64、Python 3.11.15、Qiskit 2.5.1、Qiskit Aer 0.17.2，8 个测试通过，demo 状态为 `verified`，五种子最终推荐可行率为 100%。完整记录见 [`submission/results/linux_environment_report.md`](./submission/results/linux_environment_report.md)。
+
 ## 运行 API 与 UI
 
 ```bash
@@ -169,6 +200,8 @@ scripts/             # demo、正确性、benchmark、报告导出
 tests/               # unit / integration / e2e
 ui/                  # Streamlit 演示界面
 submission/          # 竞赛提交材料、日志和 PDF
+Dockerfile            # Python 3.11 Linux 可复现镜像
+environment.yml       # Conda Linux/服务器环境
 ```
 
 ## 工程质量
@@ -193,7 +226,7 @@ submission/          # 竞赛提交材料、日志和 PDF
 
 ## 诚实边界与下一步
 
-当前 demo 数据为合成数据，正式科研展示应替换为公开或已授权数据，并记录来源、许可证、快照哈希和字段映射。当前性能数据来自 macOS + Qiskit Aer，提交到比赛前应在壁仞 GPU 平台补录单卡环境、资源和运行日志。项目不宣称量子优势，所有结论都应与经典基线和领域专家复核一起解释。
+当前 demo 数据为合成数据，正式科研展示应替换为公开或已授权数据，并记录来源、许可证、快照哈希和字段映射。项目已在 macOS 和 Docker Linux + Qiskit Aer 上复现，但提交到比赛前仍应在壁仞 GPU 平台补录单卡环境、资源和运行日志。项目不宣称量子优势，所有结论都应与经典基线和领域专家复核一起解释。
 
 ## 文档导航
 

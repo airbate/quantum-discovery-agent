@@ -18,7 +18,8 @@ submission/
 │   └── data_provenance.md
 ├── results/
 │   ├── verification_report.md
-│   └── performance_report.md
+│   ├── performance_report.md
+│   └── linux_environment_report.md
 ├── agent_logs/
 │   ├── interaction_01.md
 │   ├── interaction_02.md
@@ -38,6 +39,9 @@ submission/
 - `scripts/run_benchmark.py`：多随机种子性能/稳定性入口。
 - `scripts/run_demo.py`：单样例演示入口。
 - `pyproject.toml`：依赖和开发环境声明。
+- `Dockerfile`、`.dockerignore`：Linux 容器构建环境。
+- `environment.yml`：Linux/服务器 Conda 环境。
+- `scripts/run_linux.sh`：容器内完整正确性与性能复现入口。
 - `data/examples/`：可公开分发的合成演示数据和配置。
 
 ## 一键复现

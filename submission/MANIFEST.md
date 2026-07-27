@@ -15,9 +15,10 @@
 | --- | --- |
 | `skill.md` | `skill.md` |
 | 项目源码 | `app/`、`ui/` |
-| 依赖与运行命令 | `pyproject.toml`、根目录 `README.md`、`submission/README.md` |
+| 依赖与运行命令 | `pyproject.toml`、`Dockerfile`、`environment.yml`、`scripts/run_linux.sh`、根目录 `README.md` |
 | 正确性脚本与结果 | `scripts/run_correctness.py`、`submission/results/verification_report.md` |
 | 性能脚本与报告 | `scripts/run_benchmark.py`、`submission/results/performance_report.md` |
+| Linux 可复现环境 | `Dockerfile`、`environment.yml`、`scripts/run_linux.sh`、`submission/results/linux_environment_report.md` |
 | 单卡运行日志/结果 | `submission/results/demo_result_summary.json`、`submission/results/benchmark_result_summary.json`、`submission/results/*.log`；完整 JSON 可由复现命令生成到 `artifacts/` |
 | Agent/Skill 交互日志 | `submission/agent_logs/interaction_01.md` 至 `interaction_05.md` |
 | 场景和方法说明 | `submission/docs/scene_description.pdf`、`submission/docs/method_description.pdf`（源文件为同名 `.md`，样式为 `pdf.css`） |
