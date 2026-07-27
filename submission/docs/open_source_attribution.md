@@ -14,6 +14,8 @@
 | pytest | 自动化测试 | <https://github.com/pytest-dev/pytest> | MIT |
 | HTTPX | API 集成测试 | <https://github.com/encode/httpx> | BSD-3-Clause |
 
+竞赛 Docker 另行预装 SUPA SDK、`torch_br`、UnitaryLab 和 `unitarylab_algorithms`。这些组件用于壁仞单卡适配和环境验证，不随本仓库再分发；版本和路径以 `submission/results/biren_single_card/environment.log` 为准，使用权限遵循竞赛平台提供方条款。
+
 实际安装版本由 `pyproject.toml`、容器构建日志和 `python -m pip freeze` 共同确定。正式归档时应保存依赖锁定清单或容器镜像摘要；上游版权和许可证归各自权利人所有。
 
 ## 数据与论文

@@ -1,0 +1,75 @@
+{
+  "status": "passed",
+  "collected_at_utc": "2026-07-27T18:54:16.328793+00:00",
+  "environment": {
+    "platform": "Linux-5.15.0-119-generic-x86_64-with-glibc2.35",
+    "python": "3.10.12 (main, Mar  3 2026, 11:56:32) [GCC 11.4.0]",
+    "requested_device": "supa",
+    "qiskit": "2.5.1",
+    "qiskit-aer": "0.17.2",
+    "torch": "2.9.0+cu128",
+    "torch_br": "/usr/local/lib/python3.10/dist-packages/torch_br/__init__.py",
+    "supa_device_count": 1
+  },
+  "workload": {
+    "problem_id": "qubo-demo-run-001-16",
+    "variable_count": 16,
+    "linear_term_count": 16,
+    "quadratic_term_count": 112,
+    "bitstring_count": 65536
+  },
+  "cpu": {
+    "backend": "python_cpu",
+    "device_count": 0,
+    "wall_time_seconds": 1.7333942647092044,
+    "fallback": false,
+    "warnings": [],
+    "value_count": 65536,
+    "value_min": 0.0,
+    "value_max": 18.942212354096462,
+    "value_samples": [
+      0.0,
+      0.145266996244518,
+      0.28596099067179426,
+      0.43122798691631226,
+      0.315516844708354,
+      0.6563005332741125,
+      0.7969256176751773,
+      1.137709306240936
+    ],
+    "values_sha256": "85a7b177ca76e9c7f37f2012584982e689368cb49bc823ab049586e473cee5f1"
+  },
+  "accelerator": {
+    "backend": "torch_supa",
+    "device_count": 1,
+    "wall_time_seconds": 1.0752477231435478,
+    "fallback": false,
+    "warnings": [],
+    "value_count": 65536,
+    "value_min": 0.0,
+    "value_max": 18.942155838012695,
+    "value_samples": [
+      0.0,
+      0.145263671875,
+      0.28595733642578125,
+      0.43122100830078125,
+      0.31551361083984375,
+      0.6562939882278442,
+      0.7969187498092651,
+      1.1376991271972656
+    ],
+    "values_sha256": "3f777f2e733891cca9ade7e3d54df36f9f98f7fc1d37f208fcce729c7cafdbaf",
+    "requested_device": "supa",
+    "gpu_participated": true
+  },
+  "correctness": {
+    "max_abs_diff": 6.171035430924121e-05,
+    "tolerance": 0.0001,
+    "lengths_match": true,
+    "values_finite": true,
+    "cpu_accelerator_match": true
+  },
+  "performance": {
+    "cpu_to_accelerator_speedup": 1.6120882912837313
+  }
+}

@@ -215,7 +215,11 @@ class ExperimentService:
                 "dataset_id": spec.candidate_source.dataset_id,
                 "config_hash": config_hash,
                 "artifact_ids": artifact_ids,
-                "dependency_versions": {"python": "3.11+", "qiskit": "optional"},
+                "dependency_versions": {
+                    "python": "3.10+",
+                    "qiskit": "optional",
+                    "torch_br_supa": "optional_competition_backend",
+                },
             },
         )
         result.verification.artifact_ids = artifact_ids + [manifest_id]

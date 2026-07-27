@@ -21,13 +21,14 @@ Q-Discovery Agent 不只是一个“会调用量子线路的聊天机器人”�
 | 任务约束 | 选择 3 个候选，成本不超过 5 |
 | 量子后端 | Qiskit Aer（本地量子线路模拟器） |
 | QAOA 配置 | 16 变量、`p=1`、128 shots、8 次目标评估 |
+| 壁仞核心计算 | `torch_br` / SUPA 批量 QUBO 能量评估 |
 | 主推荐 | `c08, c10, c13` |
 | 验证状态 | `verified`，硬约束通过 |
 | 目标值独立重算误差 | `0` |
 | 五种子最终推荐可行率 | `100%` |
 | 演示/完整评测墙钟时间 | 约 `1.05s` / `4.29s` |
 
-表中时间来自 macOS 本地运行；同一推荐、验证状态和五种子可行率已在 Python 3.11 的 Docker Linux ARM64 环境复现。演示数据是合成数据；这些结果证明的是软件链路和原型的可复现性，不是化学性能、量子硬件结果或量子优势证据。
+表中基础时间来自 macOS 本地运行；同一推荐和验证状态已在 Linux Docker 与壁仞 Biren106M 单卡环境复现。壁仞运行中，Qiskit Aer 在 CPU 上完成线路模拟，SUPA GPU 参与 QAOA 的批量 QUBO 能量评分。演示数据是合成数据；这些结果证明的是软件链路和原型的可复现性，不是化学性能、量子硬件结果或量子优势证据。
 
 ## 从一个实验批次，走向科研发现基础设施
 
@@ -169,7 +170,23 @@ conda activate q-discovery-agent
 python scripts/run_demo.py --output artifacts/linux-demo.json
 ```
 
-壁仞平台需要使用主办方提供或认可的 Linux 基础镜像。确认基础镜像包含 Python 3.11 和 Debian/Ubuntu 软件包管理器后，可通过 `--build-arg BASE_IMAGE=<官方镜像>` 复用同一应用层；这属于部署适配入口，不代表当前镜像已经完成壁仞驱动或 GPU 后端适配。
+### 壁仞 SUPA 单卡运行
+
+项目已适配竞赛容器的 Python 3.10、`torch_br`、UnitaryLab 与 SUPA 1.11。Qiskit Aer 负责生成量子线路测量样本，`SupaQUBOEvaluator` 使用 `device="supa"` 在壁仞 GPU 上批量计算 QUBO 能量，用于角度期望值计算和加速评分；最终候选按 CPU 双精度值排序和发布，保持 `1e-8` 发布门槛。
+
+```bash
+source /usr/local/birensupa/sdk/1.11.0.0.rc2/scripts/brsw_set_env.sh >/dev/null
+python3 -m pip install -e ".[dev,quantum]"
+
+python3 scripts/run_supa_correctness.py --device supa \
+  --output artifacts/supa-correctness.json
+python3 scripts/run_demo.py --qubo-device supa \
+  --output artifacts/biren-demo.json
+python3 scripts/run_benchmark.py --seeds 1,2,3,4,5 --qubo-device supa \
+  --output artifacts/biren-benchmark.json
+```
+
+Biren106M 单卡实测：65,536 个 16 位比特串、16 个线性项和 112 个二次项的批量评分中，CPU/SUPA 最大误差为 `6.171e-5`（阈值 `1e-4`），评分耗时由 `1.733s` 降至 `1.075s`，约 `1.612×`；完整 Agent demo 为 `verified`，后端记录为 `qiskit_aer+torch_supa`，目标值重算误差为 `0`。原始证据见 [`submission/results/biren_single_card/`](./submission/results/biren_single_card/)。
 
 本镜像已完成真实构建和容器内验证：Linux ARM64，以及面向 Intel/AMD CPU 的 Linux AMD64（x86_64）均已通过验证。两种架构均使用 Python 3.11.15、Qiskit 2.5.1、Qiskit Aer 0.17.2；8 个测试通过，demo 状态为 `verified`。完整记录见 [`submission/results/linux_environment_report.md`](./submission/results/linux_environment_report.md)。
 
@@ -180,7 +197,7 @@ docker build --platform linux/amd64 -t q-discovery-agent:linux-amd64 .
 docker run --rm --platform linux/amd64 q-discovery-agent:linux-amd64
 ```
 
-这里的兼容性指 CPU 运行和 Qiskit Aer 的 CPU 模拟；AMD GPU 的 ROCm 加速、Intel GPU 加速和壁仞 GPU 后端属于另外的硬件适配工作。
+这里的 Intel/AMD 兼容性指 CPU 运行和 Qiskit Aer 的 CPU 模拟；AMD GPU 的 ROCm 和 Intel GPU 加速仍需单独适配。壁仞 GPU 已用于 QUBO 批量能量评分，但 Qiskit Aer 线路模拟本身仍在 CPU 上执行。
 
 ## 运行 API 与 UI
 
@@ -215,7 +232,7 @@ environment.yml       # Conda Linux/服务器环境
 
 ## 工程质量
 
-- 8 个自动化测试通过，覆盖领域模型、QUBO、求解器、API 和端到端流程；
+- 11 个自动化测试通过，覆盖领域模型、QUBO、SUPA 评估器、求解器、API 和端到端流程；
 - Ruff 静态检查通过；
 - 正确性脚本独立重算目标值，阈值为 `1e-8`；
 - 所有求解结果记录随机种子、后端、宽度、深度、shots、调用数、耗时和回退状态；

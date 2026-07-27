@@ -1,0 +1,157 @@
+collected_at_utc=2026-07-27T18:53:28Z
+project_root=/workspace/quantum/q-discovery-agent
+git_commit=167266ef01dd269c087149b1a9e06f9451d94813
+uname=Linux 498aa8a9-4d25-4f4f-bdea-9706a3046079 5.15.0-119-generic #129-Ubuntu SMP Fri Aug 2 19:25:20 UTC 2024 x86_64 x86_64 x86_64 GNU/Linux
+python=Python 3.10.12
+
+[os-release]
+PRETTY_NAME="Ubuntu 22.04.5 LTS"
+NAME="Ubuntu"
+VERSION_ID="22.04"
+VERSION="22.04.5 LTS (Jammy Jellyfish)"
+VERSION_CODENAME=jammy
+ID=ubuntu
+ID_LIKE=debian
+HOME_URL="https://www.ubuntu.com/"
+SUPPORT_URL="https://help.ubuntu.com/"
+BUG_REPORT_URL="https://bugs.launchpad.net/ubuntu/"
+PRIVACY_POLICY_URL="https://www.ubuntu.com/legal/terms-and-policies/privacy-policy"
+UBUNTU_CODENAME=jammy
+
+[lscpu]
+Architecture:                         x86_64
+CPU op-mode(s):                       32-bit, 64-bit
+Address sizes:                        46 bits physical, 57 bits virtual
+Byte Order:                           Little Endian
+CPU(s):                               128
+On-line CPU(s) list:                  0-9
+Off-line CPU(s) list:                 10-127
+Vendor ID:                            GenuineIntel
+Model name:                           Intel(R) Xeon(R) Platinum 8462Y+
+CPU family:                           6
+Model:                                143
+Thread(s) per core:                   2
+Core(s) per socket:                   32
+Socket(s):                            2
+Stepping:                             8
+CPU max MHz:                          4100.0000
+CPU min MHz:                          800.0000
+BogoMIPS:                             5600.00
+Flags:                                fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc art arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc cpuid aperfmperf tsc_known_freq pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 sdbg fma cx16 xtpr pdcm pcid dca sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm abm 3dnowprefetch cpuid_fault epb cat_l3 cat_l2 cdp_l3 invpcid_single intel_ppin cdp_l2 ssbd mba ibrs ibpb stibp ibrs_enhanced tpr_shadow vnmi flexpriority ept vpid ept_ad fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid cqm rdt_a avx512f avx512dq rdseed adx smap avx512ifma clflushopt clwb intel_pt avx512cd sha_ni avx512bw avx512vl xsaveopt xsavec xgetbv1 xsaves cqm_llc cqm_occup_llc cqm_mbm_total cqm_mbm_local split_lock_detect avx_vnni avx512_bf16 wbnoinvd dtherm ida arat pln pts hwp hwp_act_window hwp_epp hwp_pkg_req avx512vbmi umip pku ospke waitpkg avx512_vbmi2 gfni vaes vpclmulqdq avx512_vnni avx512_bitalg tme avx512_vpopcntdq la57 rdpid bus_lock_detect cldemote movdiri movdir64b enqcmd fsrm md_clear serialize tsxldtrk pconfig arch_lbr amx_bf16 avx512_fp16 amx_tile amx_int8 flush_l1d arch_capabilities
+Virtualization:                       VT-x
+L1d cache:                            3 MiB (64 instances)
+L1i cache:                            2 MiB (64 instances)
+L2 cache:                             128 MiB (64 instances)
+L3 cache:                             120 MiB (2 instances)
+NUMA node(s):                         2
+NUMA node0 CPU(s):                    0-31,64-95
+NUMA node1 CPU(s):                    32-63,96-127
+Vulnerability Gather data sampling:   Not affected
+Vulnerability Itlb multihit:          Not affected
+Vulnerability L1tf:                   Not affected
+Vulnerability Mds:                    Not affected
+Vulnerability Meltdown:               Not affected
+Vulnerability Mmio stale data:        Not affected
+Vulnerability Reg file data sampling: Not affected
+Vulnerability Retbleed:               Not affected
+Vulnerability Spec rstack overflow:   Not affected
+Vulnerability Spec store bypass:      Mitigation; Speculative Store Bypass disabled via prctl and seccomp
+Vulnerability Spectre v1:             Mitigation; usercopy/swapgs barriers and __user pointer sanitization
+Vulnerability Spectre v2:             Mitigation; Enhanced / Automatic IBRS; IBPB conditional; RSB filling; PBRSB-eIBRS SW sequence; BHI BHI_DIS_S
+Vulnerability Srbds:                  Not affected
+Vulnerability Tsx async abort:        Not affected
+
+[python-packages]
+Name: torch
+Version: 2.9.0
+Summary: Tensors and Dynamic neural networks in Python with strong GPU acceleration
+Home-page: https://pytorch.org
+Author:
+Author-email: PyTorch Team <packages@pytorch.org>
+License: BSD-3-Clause
+Location: /usr/local/lib/python3.10/dist-packages
+Requires: filelock, fsspec, jinja2, networkx, nvidia-cublas-cu12, nvidia-cuda-cupti-cu12, nvidia-cuda-nvrtc-cu12, nvidia-cuda-runtime-cu12, nvidia-cudnn-cu12, nvidia-cufft-cu12, nvidia-cufile-cu12, nvidia-curand-cu12, nvidia-cusolver-cu12, nvidia-cusparse-cu12, nvidia-cusparselt-cu12, nvidia-nccl-cu12, nvidia-nvjitlink-cu12, nvidia-nvshmem-cu12, nvidia-nvtx-cu12, sympy, triton, typing-extensions
+Required-by: unitarylab, unitarylab_algorithms
+---
+Name: torch_br
+Version: 1.10.0.20900+br1xx
+Summary: Biren GPGPU Plugin for PyTorch--> build_metadata:no_build_metedata
+Home-page:
+Author: Shanghai Biren Technology Co., Ltd
+Author-email: developer@birentech.com
+License: BSD-3
+Location: /usr/local/lib/python3.10/dist-packages
+Requires: fastcore, typing-extensions
+Required-by:
+---
+Name: unitarylab
+Version: 1.0.0
+Summary: A Python package for quantum simulator from UnitaryLab.
+Home-page:
+Author: UnitaryLab
+Author-email:
+License-Expression: LicenseRef-UnitaryLab-LICENSE
+Location: /usr/local/lib/python3.10/dist-packages
+Requires: matplotlib, mpmath, numpy, pylatexenc, scikit-learn, scipy, sympy, torch
+Required-by:
+---
+Name: unitarylab_algorithms
+Version: 1.1.0
+Summary: A Python package for quantum algorithms from UnitaryLab.
+Home-page:
+Author: UnitaryLab
+Author-email:
+License-Expression: MIT
+Location: /usr/local/lib/python3.10/dist-packages
+Requires: matplotlib, mpmath, numpy, scikit-learn, scipy, torch
+Required-by:
+---
+Name: qiskit
+Version: 2.5.1
+Summary: An open-source SDK for working with quantum computers at the level of extended quantum circuits, operators, and primitives.
+Home-page: https://www.ibm.com/quantum/qiskit
+Author:
+Author-email: Qiskit Development Team <qiskit@us.ibm.com>
+License-Expression: Apache-2.0
+Location: /usr/local/lib/python3.10/dist-packages
+Requires: dill, numpy, rustworkx, scipy, stevedore, typing-extensions
+Required-by: qiskit-aer
+---
+Name: qiskit-aer
+Version: 0.17.2
+Summary: Aer - High performance simulators for Qiskit
+Home-page: https://github.com/Qiskit/qiskit-aer
+Author: AER Development Team
+Author-email: qiskit@us.ibm.com
+License: Apache 2.0
+Location: /usr/local/lib/python3.10/dist-packages
+Requires: numpy, psutil, python-dateutil, qiskit, scipy
+Required-by:
+---
+Name: fastapi
+Version: 0.140.7
+Summary: FastAPI framework, high performance, easy to learn, fast to code, ready for production
+Home-page: https://github.com/fastapi/fastapi
+Author:
+Author-email: =?utf-8?q?Sebasti=C3=A1n_Ram=C3=ADrez?= <tiangolo@gmail.com>
+License-Expression: MIT
+Location: /usr/local/lib/python3.10/dist-packages
+Requires: annotated-doc, pydantic, starlette, typing-extensions, typing-inspection
+Required-by: q-discovery-agent
+---
+Name: pydantic
+Version: 2.13.4
+Summary: Data validation using Python type hints
+Home-page: https://github.com/pydantic/pydantic
+Author:
+Author-email: Samuel Colvin <s@muelcolvin.com>, Eric Jolibois <em.jolibois@gmail.com>, Hasan Ramezani <hasan.r67@gmail.com>, Adrian Garcia Badaracco <1755071+adriangb@users.noreply.github.com>, Terrence Dorsey <terry@pydantic.dev>, David Montague <david@pydantic.dev>, Serge Matveenko <lig@countzero.co>, Marcelo Trylesinski <marcelotryle@gmail.com>, Sydney Runkle <sydneymarierunkle@gmail.com>, David Hewitt <mail@davidhewitt.dev>, Alex Hall <alex.mojaki@gmail.com>, Victorien Plot <contact@vctrn.dev>
+License-Expression: MIT
+Location: /usr/local/lib/python3.10/dist-packages
+Requires: annotated-types, pydantic-core, typing-extensions, typing-inspection
+Required-by: fastapi, q-discovery-agent
+
+[runtime-smoke-check]
+torch 2.9.0+cu128
+torch_br /usr/local/lib/python3.10/dist-packages/torch_br/__init__.py
+UnitaryLab 1.0.0 /usr/local/lib/python3.10/dist-packages/unitarylab/__init__.py
+supa_device_count 1

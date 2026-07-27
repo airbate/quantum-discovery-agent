@@ -25,6 +25,7 @@ parse_experiment_goal
   → compile_qubo
   → estimate_resources
   → solve_batch
+      ↳ evaluate_qubo_batch（CPU / torch_supa）
   → verify_solution
   → compare_baselines
   → export_run_report
@@ -44,6 +45,7 @@ Agent 不得跳过数据审计或独立验证。求解失败时只能返回错�
 | `compile_qubo` | 候选、采集系数、硬约束 | 变量映射、QUBO、约束处理说明 |
 | `estimate_resources` | QUBO、量子配置 | 宽度、深度、Shot 和时间估计 |
 | `solve_batch` | QUBO、求解配置、Warm Start | 候选批次、采样、资源和警告 |
+| `evaluate_qubo_batch` | QUBO、测量比特串、`cpu/supa/auto` | 批量能量、后端、设备数、耗时和回退标记 |
 | `verify_solution` | 解、原始候选、规格、QUBO | 独立可行性、目标一致性和状态 |
 | `compare_baselines` | 各求解器结果 | 统一指标和预算比较 |
 | `export_run_report` | 所有 artifact | JSON/Markdown 运行报告 |
@@ -56,6 +58,7 @@ Agent 不得跳过数据审计或独立验证。求解失败时只能返回错�
 - 通过独立硬约束验证；
 - 提供基线结果、随机种子和资源记录；
 - 标注是否使用真实 Qiskit、量子模拟器或经典回退；
+- 分别标注线路模拟后端与 QUBO 能量评估设备；
 - 区分模型预测、算法测量结果和 Agent 解释。
 
 ## 有效交互示例

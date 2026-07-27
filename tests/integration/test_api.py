@@ -40,6 +40,7 @@ def test_run_api_exposes_verified_recommendation():
     assert body["verification"]["is_feasible"] is True
     assert body["recommendations"]
     assert len(body["agent_events"]) >= 5
+    assert any(event["tool_name"] == "evaluate_qubo_batch" for event in body["agent_events"])
     assert body["recommendations"][0]["resource_usage"]["fallback"] is True
     assert any("manifest.json#" in artifact for artifact in body["verification"]["artifact_ids"])
     imported = client.post(

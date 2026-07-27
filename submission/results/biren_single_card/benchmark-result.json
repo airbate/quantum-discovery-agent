@@ -1,0 +1,887 @@
+{
+  "runs": [
+    {
+      "seed": 1,
+      "status": "verified",
+      "verification": {
+        "status": "passed",
+        "hard_constraint_results": [
+          {
+            "constraint_type": "hard_constraints",
+            "passed": true,
+            "detail": "all hard constraints passed"
+          },
+          {
+            "constraint_type": "objective_consistency",
+            "passed": true,
+            "detail": "objective was independently recomputed"
+          }
+        ],
+        "objective_recomputed": 1.9898512777551274,
+        "objective_reported": 1.9898512777551274,
+        "objective_abs_error": 0.0,
+        "is_feasible": true,
+        "baseline_comparison": [
+          {
+            "solver_kind": "enumeration",
+            "best_value": 1.9898512777551274,
+            "feasible": true,
+            "runtime_seconds": 0.01544092781841755,
+            "metadata": {
+              "backend": "classical",
+              "fallback": false
+            }
+          },
+          {
+            "solver_kind": "greedy",
+            "best_value": 1.9457317619193488,
+            "feasible": true,
+            "runtime_seconds": 0.00018411222845315933,
+            "metadata": {
+              "backend": "classical",
+              "fallback": false
+            }
+          },
+          {
+            "solver_kind": "classical_bo",
+            "best_value": 1.9457317619193488,
+            "feasible": true,
+            "runtime_seconds": 0.00017155194655060768,
+            "metadata": {
+              "backend": "classical_batch_acquisition",
+              "fallback": false
+            }
+          },
+          {
+            "solver_kind": "simulated_annealing",
+            "best_value": 1.9457317619193488,
+            "feasible": true,
+            "runtime_seconds": 0.021172408014535904,
+            "metadata": {
+              "backend": "classical",
+              "fallback": false
+            }
+          },
+          {
+            "solver_kind": "penalty_qaoa",
+            "best_value": 11.925478543610575,
+            "feasible": false,
+            "runtime_seconds": 5.644448975101113,
+            "metadata": {
+              "backend": "qiskit_aer+torch_supa",
+              "fallback": false
+            }
+          },
+          {
+            "solver_kind": "warm_start_xy_qaoa",
+            "best_value": 1.9898512777551274,
+            "feasible": true,
+            "runtime_seconds": 1.606388873886317,
+            "metadata": {
+              "backend": "qiskit_aer+torch_supa",
+              "fallback": false
+            }
+          }
+        ],
+        "stability": {
+          "seed_count": 1,
+          "feasible_rate": 1.0,
+          "best_value_mean": 1.9898512777551274,
+          "best_value_std": 0.0
+        },
+        "warnings": [],
+        "artifact_ids": [
+          "benchmark-1/round_01/input_spec.json#55fcff0531396e7e",
+          "benchmark-1/round_01/data_audit.json#c4cac189e4b1b765",
+          "benchmark-1/round_01/feature_table.json#8cb9931e52526b99",
+          "benchmark-1/round_01/model_report.json#1f0b1835d359462d",
+          "benchmark-1/round_01/model_predictions.json#0574fc5d8a181342",
+          "benchmark-1/round_01/acquisition.json#4b83d6ec74a269c4",
+          "benchmark-1/round_01/qubo_problem.json#d376647e250fa619",
+          "benchmark-1/round_01/warm_start.json#915889804e4082e0",
+          "benchmark-1/round_01/solver_results.json#6241625114658d13",
+          "benchmark-1/round_01/recommendations.json#111f44ba96d58c6a",
+          "benchmark-1/round_01/verification_report.json#3b98f4f83af14d5b",
+          "benchmark-1/round_01/agent_events.json#4f53cda18c2baa0c",
+          "benchmark-1/round_01/manifest.json#c76f87052d2d3af7"
+        ],
+        "metrics": {
+          "batch_diversity": 40.16317841249086,
+          "approximation_ratio": 1.0,
+          "feasible_rate": 1.0,
+          "predicted_simple_regret": 0.1403114415426303
+        }
+      },
+      "baselines": [
+        {
+          "solver_kind": "enumeration",
+          "best_value": 1.9898512777551274,
+          "feasible": true,
+          "runtime_seconds": 0.01544092781841755,
+          "metadata": {
+            "backend": "classical",
+            "fallback": false
+          }
+        },
+        {
+          "solver_kind": "greedy",
+          "best_value": 1.9457317619193488,
+          "feasible": true,
+          "runtime_seconds": 0.00018411222845315933,
+          "metadata": {
+            "backend": "classical",
+            "fallback": false
+          }
+        },
+        {
+          "solver_kind": "classical_bo",
+          "best_value": 1.9457317619193488,
+          "feasible": true,
+          "runtime_seconds": 0.00017155194655060768,
+          "metadata": {
+            "backend": "classical_batch_acquisition",
+            "fallback": false
+          }
+        },
+        {
+          "solver_kind": "simulated_annealing",
+          "best_value": 1.9457317619193488,
+          "feasible": true,
+          "runtime_seconds": 0.021172408014535904,
+          "metadata": {
+            "backend": "classical",
+            "fallback": false
+          }
+        },
+        {
+          "solver_kind": "penalty_qaoa",
+          "best_value": 11.925478543610575,
+          "feasible": false,
+          "runtime_seconds": 5.644448975101113,
+          "metadata": {
+            "backend": "qiskit_aer+torch_supa",
+            "fallback": false
+          }
+        },
+        {
+          "solver_kind": "warm_start_xy_qaoa",
+          "best_value": 1.9898512777551274,
+          "feasible": true,
+          "runtime_seconds": 1.606388873886317,
+          "metadata": {
+            "backend": "qiskit_aer+torch_supa",
+            "fallback": false
+          }
+        }
+      ]
+    },
+    {
+      "seed": 2,
+      "status": "verified",
+      "verification": {
+        "status": "passed",
+        "hard_constraint_results": [
+          {
+            "constraint_type": "hard_constraints",
+            "passed": true,
+            "detail": "all hard constraints passed"
+          },
+          {
+            "constraint_type": "objective_consistency",
+            "passed": true,
+            "detail": "objective was independently recomputed"
+          }
+        ],
+        "objective_recomputed": 1.9188127415501626,
+        "objective_reported": 1.9188127415501626,
+        "objective_abs_error": 0.0,
+        "is_feasible": true,
+        "baseline_comparison": [
+          {
+            "solver_kind": "enumeration",
+            "best_value": 1.9898512777551274,
+            "feasible": true,
+            "runtime_seconds": 0.015921555925160646,
+            "metadata": {
+              "backend": "classical",
+              "fallback": false
+            }
+          },
+          {
+            "solver_kind": "greedy",
+            "best_value": 1.9457317619193488,
+            "feasible": true,
+            "runtime_seconds": 0.00019612908363342285,
+            "metadata": {
+              "backend": "classical",
+              "fallback": false
+            }
+          },
+          {
+            "solver_kind": "classical_bo",
+            "best_value": 1.9457317619193488,
+            "feasible": true,
+            "runtime_seconds": 0.00017860718071460724,
+            "metadata": {
+              "backend": "classical_batch_acquisition",
+              "fallback": false
+            }
+          },
+          {
+            "solver_kind": "simulated_annealing",
+            "best_value": 1.9898512777551274,
+            "feasible": true,
+            "runtime_seconds": 0.02190329320728779,
+            "metadata": {
+              "backend": "classical",
+              "fallback": false
+            }
+          },
+          {
+            "solver_kind": "penalty_qaoa",
+            "best_value": 13.518920885598716,
+            "feasible": false,
+            "runtime_seconds": 2.5362548478879035,
+            "metadata": {
+              "backend": "qiskit_aer+torch_supa",
+              "fallback": false
+            }
+          },
+          {
+            "solver_kind": "warm_start_xy_qaoa",
+            "best_value": 1.9188127415501626,
+            "feasible": true,
+            "runtime_seconds": 1.8014447377063334,
+            "metadata": {
+              "backend": "qiskit_aer+torch_supa",
+              "fallback": false
+            }
+          }
+        ],
+        "stability": {
+          "seed_count": 1,
+          "feasible_rate": 1.0,
+          "best_value_mean": 1.9188127415501626,
+          "best_value_std": 0.0
+        },
+        "warnings": [],
+        "artifact_ids": [
+          "benchmark-2/round_01/input_spec.json#a91623b023f7afc5",
+          "benchmark-2/round_01/data_audit.json#c4cac189e4b1b765",
+          "benchmark-2/round_01/feature_table.json#8cb9931e52526b99",
+          "benchmark-2/round_01/model_report.json#70f7ef39e4567f14",
+          "benchmark-2/round_01/model_predictions.json#8ceaed87442c50a6",
+          "benchmark-2/round_01/acquisition.json#23667811e3259058",
+          "benchmark-2/round_01/qubo_problem.json#7a534d339effc193",
+          "benchmark-2/round_01/warm_start.json#417e364461a28337",
+          "benchmark-2/round_01/solver_results.json#c724275dede7dfba",
+          "benchmark-2/round_01/recommendations.json#4716f976ed4d0524",
+          "benchmark-2/round_01/verification_report.json#385396fcc222e35b",
+          "benchmark-2/round_01/agent_events.json#4f53cda18c2baa0c",
+          "benchmark-2/round_01/manifest.json#4ce4dd5ffd582fb5"
+        ],
+        "metrics": {
+          "batch_diversity": 26.669682946673053,
+          "approximation_ratio": 0.9642995750490923,
+          "feasible_rate": 1.0,
+          "predicted_simple_regret": 0.10014560703653996
+        }
+      },
+      "baselines": [
+        {
+          "solver_kind": "enumeration",
+          "best_value": 1.9898512777551274,
+          "feasible": true,
+          "runtime_seconds": 0.015921555925160646,
+          "metadata": {
+            "backend": "classical",
+            "fallback": false
+          }
+        },
+        {
+          "solver_kind": "greedy",
+          "best_value": 1.9457317619193488,
+          "feasible": true,
+          "runtime_seconds": 0.00019612908363342285,
+          "metadata": {
+            "backend": "classical",
+            "fallback": false
+          }
+        },
+        {
+          "solver_kind": "classical_bo",
+          "best_value": 1.9457317619193488,
+          "feasible": true,
+          "runtime_seconds": 0.00017860718071460724,
+          "metadata": {
+            "backend": "classical_batch_acquisition",
+            "fallback": false
+          }
+        },
+        {
+          "solver_kind": "simulated_annealing",
+          "best_value": 1.9898512777551274,
+          "feasible": true,
+          "runtime_seconds": 0.02190329320728779,
+          "metadata": {
+            "backend": "classical",
+            "fallback": false
+          }
+        },
+        {
+          "solver_kind": "penalty_qaoa",
+          "best_value": 13.518920885598716,
+          "feasible": false,
+          "runtime_seconds": 2.5362548478879035,
+          "metadata": {
+            "backend": "qiskit_aer+torch_supa",
+            "fallback": false
+          }
+        },
+        {
+          "solver_kind": "warm_start_xy_qaoa",
+          "best_value": 1.9188127415501626,
+          "feasible": true,
+          "runtime_seconds": 1.8014447377063334,
+          "metadata": {
+            "backend": "qiskit_aer+torch_supa",
+            "fallback": false
+          }
+        }
+      ]
+    },
+    {
+      "seed": 3,
+      "status": "verified",
+      "verification": {
+        "status": "passed",
+        "hard_constraint_results": [
+          {
+            "constraint_type": "hard_constraints",
+            "passed": true,
+            "detail": "all hard constraints passed"
+          },
+          {
+            "constraint_type": "objective_consistency",
+            "passed": true,
+            "detail": "objective was independently recomputed"
+          }
+        ],
+        "objective_recomputed": 1.9898512777551274,
+        "objective_reported": 1.9898512777551274,
+        "objective_abs_error": 0.0,
+        "is_feasible": true,
+        "baseline_comparison": [
+          {
+            "solver_kind": "enumeration",
+            "best_value": 1.9898512777551274,
+            "feasible": true,
+            "runtime_seconds": 0.019284152891486883,
+            "metadata": {
+              "backend": "classical",
+              "fallback": false
+            }
+          },
+          {
+            "solver_kind": "greedy",
+            "best_value": 1.9457317619193488,
+            "feasible": true,
+            "runtime_seconds": 0.00019529834389686584,
+            "metadata": {
+              "backend": "classical",
+              "fallback": false
+            }
+          },
+          {
+            "solver_kind": "classical_bo",
+            "best_value": 1.9457317619193488,
+            "feasible": true,
+            "runtime_seconds": 0.00017694104462862015,
+            "metadata": {
+              "backend": "classical_batch_acquisition",
+              "fallback": false
+            }
+          },
+          {
+            "solver_kind": "simulated_annealing",
+            "best_value": 1.9898512777551274,
+            "feasible": true,
+            "runtime_seconds": 0.02145705698058009,
+            "metadata": {
+              "backend": "classical",
+              "fallback": false
+            }
+          },
+          {
+            "solver_kind": "penalty_qaoa",
+            "best_value": 1.5417002561105877,
+            "feasible": true,
+            "runtime_seconds": 2.3438133280724287,
+            "metadata": {
+              "backend": "qiskit_aer+torch_supa",
+              "fallback": false
+            }
+          },
+          {
+            "solver_kind": "warm_start_xy_qaoa",
+            "best_value": 1.9898512777551274,
+            "feasible": true,
+            "runtime_seconds": 2.6023221691139042,
+            "metadata": {
+              "backend": "qiskit_aer+torch_supa",
+              "fallback": false
+            }
+          }
+        ],
+        "stability": {
+          "seed_count": 1,
+          "feasible_rate": 1.0,
+          "best_value_mean": 1.9898512777551274,
+          "best_value_std": 0.0
+        },
+        "warnings": [],
+        "artifact_ids": [
+          "benchmark-3/round_01/input_spec.json#ba3c14a5b5aa5376",
+          "benchmark-3/round_01/data_audit.json#c4cac189e4b1b765",
+          "benchmark-3/round_01/feature_table.json#8cb9931e52526b99",
+          "benchmark-3/round_01/model_report.json#5ac2affc6d73038e",
+          "benchmark-3/round_01/model_predictions.json#5a3bb87874b8a7de",
+          "benchmark-3/round_01/acquisition.json#973d079fc4f0868f",
+          "benchmark-3/round_01/qubo_problem.json#ec8afde8e8937b73",
+          "benchmark-3/round_01/warm_start.json#d6e21d85b443223b",
+          "benchmark-3/round_01/solver_results.json#570fcc1598d6fc36",
+          "benchmark-3/round_01/recommendations.json#c5abe61e1582c2d8",
+          "benchmark-3/round_01/verification_report.json#c12f666fcfa06ccf",
+          "benchmark-3/round_01/agent_events.json#4f53cda18c2baa0c",
+          "benchmark-3/round_01/manifest.json#a9296875490118fd"
+        ],
+        "metrics": {
+          "batch_diversity": 40.16317841249086,
+          "approximation_ratio": 1.0,
+          "feasible_rate": 1.0,
+          "predicted_simple_regret": 0.1403114415426303
+        }
+      },
+      "baselines": [
+        {
+          "solver_kind": "enumeration",
+          "best_value": 1.9898512777551274,
+          "feasible": true,
+          "runtime_seconds": 0.019284152891486883,
+          "metadata": {
+            "backend": "classical",
+            "fallback": false
+          }
+        },
+        {
+          "solver_kind": "greedy",
+          "best_value": 1.9457317619193488,
+          "feasible": true,
+          "runtime_seconds": 0.00019529834389686584,
+          "metadata": {
+            "backend": "classical",
+            "fallback": false
+          }
+        },
+        {
+          "solver_kind": "classical_bo",
+          "best_value": 1.9457317619193488,
+          "feasible": true,
+          "runtime_seconds": 0.00017694104462862015,
+          "metadata": {
+            "backend": "classical_batch_acquisition",
+            "fallback": false
+          }
+        },
+        {
+          "solver_kind": "simulated_annealing",
+          "best_value": 1.9898512777551274,
+          "feasible": true,
+          "runtime_seconds": 0.02145705698058009,
+          "metadata": {
+            "backend": "classical",
+            "fallback": false
+          }
+        },
+        {
+          "solver_kind": "penalty_qaoa",
+          "best_value": 1.5417002561105877,
+          "feasible": true,
+          "runtime_seconds": 2.3438133280724287,
+          "metadata": {
+            "backend": "qiskit_aer+torch_supa",
+            "fallback": false
+          }
+        },
+        {
+          "solver_kind": "warm_start_xy_qaoa",
+          "best_value": 1.9898512777551274,
+          "feasible": true,
+          "runtime_seconds": 2.6023221691139042,
+          "metadata": {
+            "backend": "qiskit_aer+torch_supa",
+            "fallback": false
+          }
+        }
+      ]
+    },
+    {
+      "seed": 4,
+      "status": "verified",
+      "verification": {
+        "status": "passed",
+        "hard_constraint_results": [
+          {
+            "constraint_type": "hard_constraints",
+            "passed": true,
+            "detail": "all hard constraints passed"
+          },
+          {
+            "constraint_type": "objective_consistency",
+            "passed": true,
+            "detail": "objective was independently recomputed"
+          }
+        ],
+        "objective_recomputed": 1.8146617003640029,
+        "objective_reported": 1.8146617003640029,
+        "objective_abs_error": 0.0,
+        "is_feasible": true,
+        "baseline_comparison": [
+          {
+            "solver_kind": "enumeration",
+            "best_value": 1.9898512777551274,
+            "feasible": true,
+            "runtime_seconds": 0.015747518744319677,
+            "metadata": {
+              "backend": "classical",
+              "fallback": false
+            }
+          },
+          {
+            "solver_kind": "greedy",
+            "best_value": 1.9457317619193488,
+            "feasible": true,
+            "runtime_seconds": 0.00019549019634723663,
+            "metadata": {
+              "backend": "classical",
+              "fallback": false
+            }
+          },
+          {
+            "solver_kind": "classical_bo",
+            "best_value": 1.9457317619193488,
+            "feasible": true,
+            "runtime_seconds": 0.00017294613644480705,
+            "metadata": {
+              "backend": "classical_batch_acquisition",
+              "fallback": false
+            }
+          },
+          {
+            "solver_kind": "simulated_annealing",
+            "best_value": 1.9898512777551274,
+            "feasible": true,
+            "runtime_seconds": 0.021399459335952997,
+            "metadata": {
+              "backend": "classical",
+              "fallback": false
+            }
+          },
+          {
+            "solver_kind": "penalty_qaoa",
+            "best_value": 13.727919490551422,
+            "feasible": false,
+            "runtime_seconds": 1.6458014487288892,
+            "metadata": {
+              "backend": "qiskit_aer+torch_supa",
+              "fallback": false
+            }
+          },
+          {
+            "solver_kind": "warm_start_xy_qaoa",
+            "best_value": 1.8146617003640029,
+            "feasible": true,
+            "runtime_seconds": 1.8946855077520013,
+            "metadata": {
+              "backend": "qiskit_aer+torch_supa",
+              "fallback": false
+            }
+          }
+        ],
+        "stability": {
+          "seed_count": 1,
+          "feasible_rate": 1.0,
+          "best_value_mean": 1.8146617003640029,
+          "best_value_std": 0.0
+        },
+        "warnings": [],
+        "artifact_ids": [
+          "benchmark-4/round_01/input_spec.json#a4a6a9b522431880",
+          "benchmark-4/round_01/data_audit.json#c4cac189e4b1b765",
+          "benchmark-4/round_01/feature_table.json#8cb9931e52526b99",
+          "benchmark-4/round_01/model_report.json#72ae715643c0ffc2",
+          "benchmark-4/round_01/model_predictions.json#85d9588d6d51e440",
+          "benchmark-4/round_01/acquisition.json#db74da330ae0ff5f",
+          "benchmark-4/round_01/qubo_problem.json#b723484aeeb8d93f",
+          "benchmark-4/round_01/warm_start.json#d24e839e51845b32",
+          "benchmark-4/round_01/solver_results.json#6e8f8d738e2a0ccd",
+          "benchmark-4/round_01/recommendations.json#f016cc87d829dcb7",
+          "benchmark-4/round_01/verification_report.json#5afe386d63a7a8dc",
+          "benchmark-4/round_01/agent_events.json#4f53cda18c2baa0c",
+          "benchmark-4/round_01/manifest.json#65c0148cb4a1ca68"
+        ],
+        "metrics": {
+          "batch_diversity": 13.49780140311661,
+          "approximation_ratio": 0.9119584567200587,
+          "feasible_rate": 1.0,
+          "predicted_simple_regret": 0.1313197330446647
+        }
+      },
+      "baselines": [
+        {
+          "solver_kind": "enumeration",
+          "best_value": 1.9898512777551274,
+          "feasible": true,
+          "runtime_seconds": 0.015747518744319677,
+          "metadata": {
+            "backend": "classical",
+            "fallback": false
+          }
+        },
+        {
+          "solver_kind": "greedy",
+          "best_value": 1.9457317619193488,
+          "feasible": true,
+          "runtime_seconds": 0.00019549019634723663,
+          "metadata": {
+            "backend": "classical",
+            "fallback": false
+          }
+        },
+        {
+          "solver_kind": "classical_bo",
+          "best_value": 1.9457317619193488,
+          "feasible": true,
+          "runtime_seconds": 0.00017294613644480705,
+          "metadata": {
+            "backend": "classical_batch_acquisition",
+            "fallback": false
+          }
+        },
+        {
+          "solver_kind": "simulated_annealing",
+          "best_value": 1.9898512777551274,
+          "feasible": true,
+          "runtime_seconds": 0.021399459335952997,
+          "metadata": {
+            "backend": "classical",
+            "fallback": false
+          }
+        },
+        {
+          "solver_kind": "penalty_qaoa",
+          "best_value": 13.727919490551422,
+          "feasible": false,
+          "runtime_seconds": 1.6458014487288892,
+          "metadata": {
+            "backend": "qiskit_aer+torch_supa",
+            "fallback": false
+          }
+        },
+        {
+          "solver_kind": "warm_start_xy_qaoa",
+          "best_value": 1.8146617003640029,
+          "feasible": true,
+          "runtime_seconds": 1.8946855077520013,
+          "metadata": {
+            "backend": "qiskit_aer+torch_supa",
+            "fallback": false
+          }
+        }
+      ]
+    },
+    {
+      "seed": 5,
+      "status": "verified",
+      "verification": {
+        "status": "passed",
+        "hard_constraint_results": [
+          {
+            "constraint_type": "hard_constraints",
+            "passed": true,
+            "detail": "all hard constraints passed"
+          },
+          {
+            "constraint_type": "objective_consistency",
+            "passed": true,
+            "detail": "objective was independently recomputed"
+          }
+        ],
+        "objective_recomputed": 1.9898512777551274,
+        "objective_reported": 1.9898512777551274,
+        "objective_abs_error": 0.0,
+        "is_feasible": true,
+        "baseline_comparison": [
+          {
+            "solver_kind": "enumeration",
+            "best_value": 1.9898512777551274,
+            "feasible": true,
+            "runtime_seconds": 0.015703885816037655,
+            "metadata": {
+              "backend": "classical",
+              "fallback": false
+            }
+          },
+          {
+            "solver_kind": "greedy",
+            "best_value": 1.9457317619193488,
+            "feasible": true,
+            "runtime_seconds": 0.0001934366300702095,
+            "metadata": {
+              "backend": "classical",
+              "fallback": false
+            }
+          },
+          {
+            "solver_kind": "classical_bo",
+            "best_value": 1.9457317619193488,
+            "feasible": true,
+            "runtime_seconds": 0.000173875130712986,
+            "metadata": {
+              "backend": "classical_batch_acquisition",
+              "fallback": false
+            }
+          },
+          {
+            "solver_kind": "simulated_annealing",
+            "best_value": 1.9898512777551274,
+            "feasible": true,
+            "runtime_seconds": 0.02177256438881159,
+            "metadata": {
+              "backend": "classical",
+              "fallback": false
+            }
+          },
+          {
+            "solver_kind": "penalty_qaoa",
+            "best_value": 1.7100177490816306,
+            "feasible": true,
+            "runtime_seconds": 2.142392158973962,
+            "metadata": {
+              "backend": "qiskit_aer+torch_supa",
+              "fallback": false
+            }
+          },
+          {
+            "solver_kind": "warm_start_xy_qaoa",
+            "best_value": 1.9898512777551274,
+            "feasible": true,
+            "runtime_seconds": 0.9173619551584125,
+            "metadata": {
+              "backend": "qiskit_aer+torch_supa",
+              "fallback": false
+            }
+          }
+        ],
+        "stability": {
+          "seed_count": 1,
+          "feasible_rate": 1.0,
+          "best_value_mean": 1.9898512777551274,
+          "best_value_std": 0.0
+        },
+        "warnings": [],
+        "artifact_ids": [
+          "benchmark-5/round_01/input_spec.json#4b09346f5193dfca",
+          "benchmark-5/round_01/data_audit.json#c4cac189e4b1b765",
+          "benchmark-5/round_01/feature_table.json#8cb9931e52526b99",
+          "benchmark-5/round_01/model_report.json#e8e3b309095a298b",
+          "benchmark-5/round_01/model_predictions.json#4bc78b8ef8e8234c",
+          "benchmark-5/round_01/acquisition.json#8661e1120a826eff",
+          "benchmark-5/round_01/qubo_problem.json#901ab375cfff0d29",
+          "benchmark-5/round_01/warm_start.json#22b9c039369bafd1",
+          "benchmark-5/round_01/solver_results.json#976bb8e5946ef881",
+          "benchmark-5/round_01/recommendations.json#eb82d0f5c9fe38c4",
+          "benchmark-5/round_01/verification_report.json#4fa63b757a1181de",
+          "benchmark-5/round_01/agent_events.json#4f53cda18c2baa0c",
+          "benchmark-5/round_01/manifest.json#c9cece44eef761d5"
+        ],
+        "metrics": {
+          "batch_diversity": 40.16317841249086,
+          "approximation_ratio": 1.0,
+          "feasible_rate": 1.0,
+          "predicted_simple_regret": 0.1403114415426303
+        }
+      },
+      "baselines": [
+        {
+          "solver_kind": "enumeration",
+          "best_value": 1.9898512777551274,
+          "feasible": true,
+          "runtime_seconds": 0.015703885816037655,
+          "metadata": {
+            "backend": "classical",
+            "fallback": false
+          }
+        },
+        {
+          "solver_kind": "greedy",
+          "best_value": 1.9457317619193488,
+          "feasible": true,
+          "runtime_seconds": 0.0001934366300702095,
+          "metadata": {
+            "backend": "classical",
+            "fallback": false
+          }
+        },
+        {
+          "solver_kind": "classical_bo",
+          "best_value": 1.9457317619193488,
+          "feasible": true,
+          "runtime_seconds": 0.000173875130712986,
+          "metadata": {
+            "backend": "classical_batch_acquisition",
+            "fallback": false
+          }
+        },
+        {
+          "solver_kind": "simulated_annealing",
+          "best_value": 1.9898512777551274,
+          "feasible": true,
+          "runtime_seconds": 0.02177256438881159,
+          "metadata": {
+            "backend": "classical",
+            "fallback": false
+          }
+        },
+        {
+          "solver_kind": "penalty_qaoa",
+          "best_value": 1.7100177490816306,
+          "feasible": true,
+          "runtime_seconds": 2.142392158973962,
+          "metadata": {
+            "backend": "qiskit_aer+torch_supa",
+            "fallback": false
+          }
+        },
+        {
+          "solver_kind": "warm_start_xy_qaoa",
+          "best_value": 1.9898512777551274,
+          "feasible": true,
+          "runtime_seconds": 0.9173619551584125,
+          "metadata": {
+            "backend": "qiskit_aer+torch_supa",
+            "fallback": false
+          }
+        }
+      ]
+    }
+  ],
+  "seed_count": 5,
+  "feasible_rates": [
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0
+  ]
+}

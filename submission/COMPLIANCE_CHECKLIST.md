@@ -1,6 +1,6 @@
 # 提交合规检查表
 
-本表依据赛事“提交与评审、统一要求、提交规范”逐项映射。`已具备` 表示仓库中已有可复核材料；`待实机` 表示必须在最终使用的单卡环境重新采集，当前不得用本地 CPU 结果代替。
+本表依据赛事“提交与评审、统一要求、提交规范”逐项映射。`已具备` 表示仓库中已有可复核材料。
 
 | 要求 | 状态 | 材料与说明 |
 | --- | --- | --- |
@@ -13,21 +13,19 @@
 | 性能脚本与报告 | 已具备 | `scripts/run_benchmark.py`、`benchmark.log`、`performance_report.md` |
 | Agent/Skill 至少 5 段交互 | 已具备 | `submission/agent_logs/interaction_01.md` 至 `interaction_05.md`，并有 `agent_events.json` 支撑 |
 | 结果分析与正确性说明 | 已具备 | `submission/docs/results_analysis.md/.pdf`、`submission/results/verification_report.md` |
-| 平台和运行环境说明 | 已具备 | `submission/results/linux_environment_report.md`；已验证 Linux ARM64 与 AMD64 CPU 环境 |
+| 平台和运行环境说明 | 已具备 | `linux_environment_report.md` 与 `biren_single_card/environment.log` |
 | 公开资源来源声明 | 已具备 | `submission/docs/data_provenance.md`、`open_source_attribution.md` |
 | 演示样例小于 10 分钟 | 已具备 | 当前约 1 秒，见 `performance_report.md` |
 | 完整评测小于 30 分钟 | 已具备 | 当前五种子约 4 秒，见 `performance_report.md` |
 | 展示材料 | 部分具备 | `submission/demo/demo_script.md`、`presentation_outline.md`；正式 PPT、录屏和截图仍建议制作 |
-| 单卡运行日志/截图/结果 | 待实机 | 使用 `scripts/collect_single_card_evidence.sh` 在最终单卡机器采集；当前没有壁仞 GPU 实测证据 |
-| 壁仞 GPU 核心计算说明 | 待适配 | 当前 Qiskit Aer 使用 CPU；若仅在壁仞主机运行但 GPU 未参与，必须如实注明“平台可运行、GPU 未参与核心计算” |
+| 单卡运行日志/截图/结果 | 已具备 | `submission/results/biren_single_card/`，含环境、测试、demo、benchmark、SUPA 对照和哈希 |
+| 壁仞 GPU 核心计算说明 | 已具备 | `SupaQUBOEvaluator` 承担 QAOA 批量能量评分；Aer 线路模拟仍在 CPU |
 
 ## 最终提交前必须完成
 
-1. 在最终参赛平台执行 `bash scripts/collect_single_card_evidence.sh`，保留生成的环境、设备、测试、demo、benchmark、JSON 和哈希文件。
-2. 核对设备日志是否只暴露一张卡，并记录机器型号、驱动、容器镜像、Python/Qiskit 版本、峰值资源和 Git commit。
-3. 若 GPU 实际参与核心环节，给出后端和算子证据；若未参与，不得只凭 `smi` 截图宣称 GPU 加速。
-4. 录制 3 分钟演示，覆盖自然语言输入、Agent 调用链、QUBO/QAOA、独立验证、基线比较和能力边界。
-5. 将实机结果替换或追加到性能报告，不覆盖已有 CPU 基准，并标明不同平台。
+1. 录制 3 分钟演示，覆盖自然语言输入、Agent 调用链、QUBO/QAOA、SUPA 评分、独立验证和能力边界。
+2. 提交前在最终代码提交上再执行一次 `bash scripts/collect_single_card_evidence.sh`，核对 SHA-256。
+3. 截图应包含 `brsmi` 单卡信息和结果摘要；原始文本日志继续作为可检索证据。
 
 ## 评审叙事建议
 

@@ -7,7 +7,7 @@
 1. **数据层**：读取候选实验条件与历史观测，完成字段、缺失、重复和可用性审计。
 2. **建模层**：用轻量的距离加权近邻集成模型给出预测均值与不确定性，适合小样本冷启动。
 3. **决策层**：把利用、探索、多样性、成本和风险组成统一采集函数。
-4. **量子优化层**：将候选选择编译成 QUBO，使用可行子空间 Warm Start XY-QAOA；同时运行经典基线。
+4. **量子优化层**：将候选选择编译成 QUBO，使用可行子空间 Warm Start XY-QAOA；在壁仞环境中通过 `torch_br` / SUPA 批量计算 QUBO 能量，同时运行经典基线。
 5. **验证层**：独立重算约束和目标值，拒绝不满足约束或报告不一致的结果，再导出 artifacts。
 
 ## 2. 代理模型
@@ -40,6 +40,8 @@ a_ij = w_d * normalized(distance(z_i, z_j))
 
 演示配置权重为 exploitation 0.40、exploration 0.25、diversity 0.20、cost 0.10、risk 0.05。归一化仅在当前候选集合内执行，避免不同量纲直接相加。
 
+<div style="break-before: page;"></div>
+
 ## 4. QUBO 与约束
 
 令 `x_i=1` 表示选择候选 `i`，优化目标为：
@@ -65,6 +67,16 @@ maximize  sum_i(a_i * x_i) + sum_{i<j}(a_ij * x_i * x_j)
 - cost phase：按 QUBO 线性项使用 `RZ`，按二次项使用 `RZZ`；
 - 角度搜索：固定 warm-start 加逐步收缩扰动，实际期望值来自采样结果；
 - 后端：Qiskit Aer；配置 `p=1`、128 shots、最多 8 次目标函数评估。
+
+### 壁仞 SUPA 能量评估
+
+Qiskit Aer 生成每组角度对应的测量比特串和计数。`SupaQUBOEvaluator` 将比特串批量转换为 `torch.float32` SUPA 张量，并执行：
+
+```text
+E(x) = constant + x · linear + sum_(i,j)(q_ij * x_i * x_j)
+```
+
+GPU 结果用于期望值计算、角度比较和加速评分。为了避免 FP32 末位误差改变接近候选的顺序，最终样本统一由 CPU 双精度重算、排序和发布；独立验证器仍要求绝对误差 `≤1e-8`。资源字段以 `qiskit_aer+torch_supa` 明确记录两个计算环节，不把 Aer CPU 模拟描述成 GPU 量子模拟。
 
 ### 对比基线
 

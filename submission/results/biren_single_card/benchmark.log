@@ -1,0 +1,7 @@
+{
+  "output": "artifacts/final-evidence/benchmark-result.json",
+  "seed_count": 5
+}
+real 25.19
+user 199.82
+sys 1.05

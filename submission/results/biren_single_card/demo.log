@@ -1,0 +1,233 @@
+$ /usr/bin/python3 scripts/run_demo.py --qubo-device supa --output artifacts/final-evidence/demo-result.json
+{
+  "run_id": "demo-run-001",
+  "status": "verified",
+  "recommendations": [
+    {
+      "batch_id": "batch_00",
+      "strategy": "primary",
+      "candidate_ids": [
+        "c08",
+        "c10",
+        "c13"
+      ],
+      "predicted_components": {
+        "mean": 0.5541846737459916,
+        "uncertainty": 0.2412924540528262,
+        "diversity": 26.66963661418392,
+        "cost": 3.3000000000000003,
+        "risk": 0.42000000000000004
+      },
+      "predicted_objective": 1.7137248952764121,
+      "solver_kind": "warm_start_xy_qaoa",
+      "sample_probability": 1.0,
+      "resource_usage": {
+        "backend": "qiskit_aer+torch_supa",
+        "quantum_width": 16,
+        "circuit_depth": 1,
+        "shots": 128,
+        "objective_calls": 8,
+        "wall_time_seconds": 1.388634700793773,
+        "fallback": false,
+        "warnings": []
+      }
+    },
+    {
+      "batch_id": "batch_01",
+      "strategy": "high_yield",
+      "candidate_ids": [
+        "c05",
+        "c06",
+        "c10"
+      ],
+      "predicted_components": {
+        "mean": 0.6576131155889297,
+        "uncertainty": 0.16434183338927535,
+        "diversity": 26.66977255196929,
+        "cost": 3.8,
+        "risk": 0.6499999999999999
+      },
+      "predicted_objective": 1.6697253454945589,
+      "solver_kind": "greedy",
+      "sample_probability": null,
+      "resource_usage": {
+        "backend": "classical",
+        "quantum_width": 0,
+        "circuit_depth": 0,
+        "shots": 0,
+        "objective_calls": 1,
+        "wall_time_seconds": 0.00020758295431733131,
+        "fallback": false,
+        "warnings": []
+      }
+    },
+    {
+      "batch_id": "batch_02",
+      "strategy": "high_information",
+      "candidate_ids": [
+        "c10",
+        "c11",
+        "c14"
+      ],
+      "predicted_components": {
+        "mean": 0.5681678184147548,
+        "uncertainty": 0.3184789741145191,
+        "diversity": 40.16317841249086,
+        "cost": 3.6999999999999997,
+        "risk": 0.53
+      },
+      "predicted_objective": 1.9898512777551274,
+      "solver_kind": "greedy",
+      "sample_probability": null,
+      "resource_usage": {
+        "backend": "classical",
+        "quantum_width": 0,
+        "circuit_depth": 0,
+        "shots": 0,
+        "objective_calls": 1,
+        "wall_time_seconds": 0.00019000982865691185,
+        "fallback": false,
+        "warnings": []
+      }
+    },
+    {
+      "batch_id": "batch_03",
+      "strategy": "low_cost_risk",
+      "candidate_ids": [
+        "c04",
+        "c08",
+        "c13"
+      ],
+      "predicted_components": {
+        "mean": 0.5622347246374473,
+        "uncertainty": 0.16988262888882133,
+        "diversity": 26.66963662676019,
+        "cost": 3.2,
+        "risk": 0.34
+      },
+      "predicted_objective": 1.6654386623271538,
+      "solver_kind": "greedy",
+      "sample_probability": null,
+      "resource_usage": {
+        "backend": "classical",
+        "quantum_width": 0,
+        "circuit_depth": 0,
+        "shots": 0,
+        "objective_calls": 1,
+        "wall_time_seconds": 0.00018914323300123215,
+        "fallback": false,
+        "warnings": []
+      }
+    }
+  ],
+  "verification": {
+    "status": "passed",
+    "hard_constraint_results": [
+      {
+        "constraint_type": "hard_constraints",
+        "passed": true,
+        "detail": "all hard constraints passed"
+      },
+      {
+        "constraint_type": "objective_consistency",
+        "passed": true,
+        "detail": "objective was independently recomputed"
+      }
+    ],
+    "objective_recomputed": 1.7137248952764121,
+    "objective_reported": 1.7137248952764121,
+    "objective_abs_error": 0.0,
+    "is_feasible": true,
+    "baseline_comparison": [
+      {
+        "solver_kind": "enumeration",
+        "best_value": 1.9898512777551274,
+        "feasible": true,
+        "runtime_seconds": 0.018394272308796644,
+        "metadata": {
+          "backend": "classical",
+          "fallback": false
+        }
+      },
+      {
+        "solver_kind": "greedy",
+        "best_value": 1.9457317619193488,
+        "feasible": true,
+        "runtime_seconds": 0.00018922612071037292,
+        "metadata": {
+          "backend": "classical",
+          "fallback": false
+        }
+      },
+      {
+        "solver_kind": "classical_bo",
+        "best_value": 1.9457317619193488,
+        "feasible": true,
+        "runtime_seconds": 0.00017832918092608452,
+        "metadata": {
+          "backend": "classical_batch_acquisition",
+          "fallback": false
+        }
+      },
+      {
+        "solver_kind": "simulated_annealing",
+        "best_value": 1.9898512777551274,
+        "feasible": true,
+        "runtime_seconds": 0.025288328994065523,
+        "metadata": {
+          "backend": "classical",
+          "fallback": false
+        }
+      },
+      {
+        "solver_kind": "penalty_qaoa",
+        "best_value": 11.731121752979222,
+        "feasible": false,
+        "runtime_seconds": 4.843768574297428,
+        "metadata": {
+          "backend": "qiskit_aer+torch_supa",
+          "fallback": false
+        }
+      },
+      {
+        "solver_kind": "warm_start_xy_qaoa",
+        "best_value": 1.7137248952764121,
+        "feasible": true,
+        "runtime_seconds": 1.388634700793773,
+        "metadata": {
+          "backend": "qiskit_aer+torch_supa",
+          "fallback": false
+        }
+      }
+    ],
+    "stability": {
+      "seed_count": 1,
+      "feasible_rate": 1.0,
+      "best_value_mean": 1.7137248952764121,
+      "best_value_std": 0.0
+    },
+    "warnings": [],
+    "artifact_ids": [
+      "demo-run-001/round_01/input_spec.json#a5c2655a717ae313",
+      "demo-run-001/round_01/data_audit.json#c4cac189e4b1b765",
+      "demo-run-001/round_01/feature_table.json#8cb9931e52526b99",
+      "demo-run-001/round_01/model_report.json#164a3b5450156c28",
+      "demo-run-001/round_01/model_predictions.json#1ad1e6972538864e",
+      "demo-run-001/round_01/acquisition.json#d5b75169fc3f679f",
+      "demo-run-001/round_01/qubo_problem.json#24f3e9bfb04bf85c",
+      "demo-run-001/round_01/warm_start.json#fcdd8eca5a170743",
+      "demo-run-001/round_01/solver_results.json#1372b15eeca76278",
+      "demo-run-001/round_01/recommendations.json#e2bde63be60f8f23",
+      "demo-run-001/round_01/verification_report.json#6b5e100cc895367d",
+      "demo-run-001/round_01/agent_events.json#250ae72622eae840",
+      "demo-run-001/round_01/manifest.json#79a46dc5073fd3fb"
+    ],
+    "metrics": {
+      "batch_diversity": 26.66963661418392,
+      "approximation_ratio": 0.8612326531306248,
+      "feasible_rate": 1.0,
+      "predicted_simple_regret": 0.1403114415426303
+    }
+  },
+  "output": "artifacts/final-evidence/demo-result.json"
+}

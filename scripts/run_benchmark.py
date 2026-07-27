@@ -17,6 +17,7 @@ def main() -> None:
     parser.add_argument("--data", default="data/examples/demo_candidates.csv")
     parser.add_argument("--seeds", default="1,2,3,4,5")
     parser.add_argument("--output", default="artifacts/benchmark.json")
+    parser.add_argument("--qubo-device", choices=("cpu", "supa", "auto"))
     args = parser.parse_args()
     spec_payload = json.loads(Path(args.config).read_text(encoding="utf-8"))
     candidates, observations = load_candidates_csv(
@@ -33,6 +34,8 @@ def main() -> None:
         payload["run_id"] = f"benchmark-{seed}"
         payload["solver"] = dict(payload["solver"])
         payload["solver"]["seed"] = seed
+        if args.qubo_device:
+            payload["solver"]["qubo_evaluation_device"] = args.qubo_device
         spec = ExperimentDesignSpec.model_validate(payload)
         result = __import__("app.service", fromlist=["ExperimentService"]).ExperimentService().run_round(spec, candidates, history)
         records.append({

@@ -34,3 +34,11 @@ correctness passed: 15 feasible combinations; best=1.225782
 ```
 
 验证器位于 `app/verification/feasibility.py`。任何不可行比特串或目标值不一致的结果都会被拒绝发布；错误不会被包装成成功推荐。
+
+## 壁仞 SUPA 对照
+
+```bash
+python3 scripts/run_supa_correctness.py --device supa
+```
+
+对 demo QUBO 的 65,536 个比特串逐项比较 CPU 双精度参考值与 SUPA FP32 输出，最大绝对误差为 `6.171035430924121e-05`，低于 `1e-4` 阈值。集成 Agent demo 使用 SUPA 结果进行期望值计算和加速评分，再对最终样本执行 CPU 双精度重算与排序；最终验证状态为 `passed`，发布目标值误差为 `0.0`。

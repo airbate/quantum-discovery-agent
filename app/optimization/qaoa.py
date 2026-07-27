@@ -16,6 +16,7 @@ from app.domain.models import (
 )
 from app.optimization.constraints import is_feasible
 from app.optimization.qubo import utility_for_bitstring
+from app.optimization.supa import SupaQUBOEvaluator
 
 
 class QAOAAdapter:
@@ -24,6 +25,7 @@ class QAOAAdapter:
     def __init__(self, candidates: list[Candidate], spec: ExperimentDesignSpec):
         self.candidates = candidates
         self.spec = spec
+        self.qubo_evaluator = SupaQUBOEvaluator()
 
     def solve(
         self,
@@ -131,6 +133,9 @@ class QAOAAdapter:
         best_angles = angles[0]
         best_expectation = float("-inf")
         objective_calls = 0
+        qubo_backends: set[str] = set()
+        evaluation_warnings: list[str] = []
+        qubo_fallback_used = False
         for angle_index, (gammas, betas) in enumerate(angles[: config.max_objective_calls]):
             counts = self._run_circuit(
                 phase_problem,
@@ -144,12 +149,16 @@ class QAOAAdapter:
                 transpile=transpile,
             )
             objective_calls += 1
-            expectation = self._expected_value(
+            expectation, evaluation = self._expected_value(
                 counts,
                 problem if config.kind != SolverKind.PENALTY_QAOA else phase_problem,
                 search_shots,
                 only_feasible=config.kind != SolverKind.PENALTY_QAOA,
+                device=config.qubo_evaluation_device,
             )
+            qubo_backends.add(evaluation.backend)
+            evaluation_warnings.extend(evaluation.warnings)
+            qubo_fallback_used = qubo_fallback_used or evaluation.fallback
             if expectation > best_expectation:
                 best_expectation = expectation
                 best_angles = (gammas, betas)
@@ -164,45 +173,61 @@ class QAOAAdapter:
             seed=config.seed + objective_calls + 1,
             transpile=transpile,
         )
-        samples: list[dict] = []
+        raw_samples: list[tuple[list[int], int, bool]] = []
         for raw_bits, count in counts.items():
             bits = [int(bit) for bit in raw_bits[::-1]]
-            if not is_feasible(bits, self.candidates, self.spec)[0]:
-                continue
-            value = utility_for_bitstring(bits, problem)
-            samples.append({"bitstring": bits, "value": value, "count": count, "probability": count / config.shots})
-        if not samples and config.kind == SolverKind.PENALTY_QAOA:
+            feasible = is_feasible(bits, self.candidates, self.spec)[0]
+            if feasible:
+                raw_samples.append((bits, count, True))
+        if not raw_samples and config.kind == SolverKind.PENALTY_QAOA:
             # A penalty baseline may legitimately return no feasible sample;
             # keep the best raw sample so the verifier can report that failure
             # instead of silently converting it into a different algorithm.
             for raw_bits, count in counts.items():
                 bits = [int(bit) for bit in raw_bits[::-1]]
-                samples.append(
-                    {
-                        "bitstring": bits,
-                        "value": utility_for_bitstring(bits, problem),
-                        "count": count,
-                        "probability": count / config.shots,
-                        "feasible": is_feasible(bits, self.candidates, self.spec)[0],
-                    }
-                )
-        if not samples:
+                raw_samples.append((bits, count, is_feasible(bits, self.candidates, self.spec)[0]))
+        if not raw_samples:
             raise ValueError("Qiskit returned no feasible samples")
+        final_evaluation = self.qubo_evaluator.evaluate(
+            problem,
+            [bits for bits, _, _ in raw_samples],
+            device=config.qubo_evaluation_device,
+        )
+        qubo_backends.add(final_evaluation.backend)
+        evaluation_warnings.extend(final_evaluation.warnings)
+        qubo_fallback_used = qubo_fallback_used or final_evaluation.fallback
+        samples: list[dict] = []
+        for (bits, count, feasible), value in zip(raw_samples, final_evaluation.values):
+            canonical_value = utility_for_bitstring(bits, problem)
+            sample = {
+                "bitstring": bits,
+                "value": canonical_value,
+                "accelerated_value": value,
+                "count": count,
+                "probability": count / config.shots,
+            }
+            if config.kind == SolverKind.PENALTY_QAOA:
+                sample["feasible"] = feasible
+            samples.append(sample)
         best = max(samples, key=lambda item: item["value"])
+        canonical_best_value = float(best["value"])
+        scoring_backend = "+".join(sorted(qubo_backends))
         return SolverArtifact(
             solver_kind=config.kind,
             samples=samples,
             best_bitstring=list(best["bitstring"]),
-            best_value=float(best["value"]),
+            best_value=canonical_best_value,
             resource_usage=ResourceUsage(
-                backend="qiskit_aer",
+                backend=f"qiskit_aer+{scoring_backend}",
                 quantum_width=width,
                 circuit_depth=config.p,
                 shots=config.shots,
                 objective_calls=objective_calls,
                 wall_time_seconds=time.perf_counter() - started,
-                fallback=False,
+                fallback=qubo_fallback_used,
+                warnings=list(dict.fromkeys(evaluation_warnings)),
             ),
+            warnings=list(dict.fromkeys(evaluation_warnings)),
         )
 
     def _angle_candidates(self, config: SolverConfig) -> list[tuple[list[float], list[float]]]:
@@ -274,13 +299,17 @@ class QAOAAdapter:
         compiled = transpile(circuit, backend, seed_transpiler=seed)
         return backend.run(compiled, shots=shots, seed_simulator=seed).result().get_counts()
 
-    def _expected_value(self, counts, problem, shots, only_feasible=True):
-        total = 0.0
+    def _expected_value(self, counts, problem, shots, only_feasible=True, device="cpu"):
+        bitstrings: list[list[int]] = []
+        weights: list[int] = []
         for raw_bits, count in counts.items():
             bits = [int(bit) for bit in raw_bits[::-1]]
             if not only_feasible or is_feasible(bits, self.candidates, self.spec)[0]:
-                total += count * utility_for_bitstring(bits, problem)
-        return total / max(1, shots)
+                bitstrings.append(bits)
+                weights.append(count)
+        evaluation = self.qubo_evaluator.evaluate(problem, bitstrings, device=device)
+        total = sum(count * value for count, value in zip(weights, evaluation.values))
+        return total / max(1, shots), evaluation
 
     @staticmethod
     def _penalty_problem(problem: QUBOProblem) -> QUBOProblem:

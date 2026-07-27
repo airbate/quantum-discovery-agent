@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from datetime import UTC, datetime
+from datetime import datetime, timezone
 from enum import Enum
 from typing import Any, Literal
 
@@ -102,6 +102,7 @@ class SolverConfig(StrictModel):
     max_objective_calls: int = Field(default=24, ge=1, le=200)
     seed: int = 20260727
     backend: str = "auto"
+    qubo_evaluation_device: Literal["cpu", "supa", "auto"] = "auto"
     noise_model: Literal["none", "depolarizing"] = "none"
 
 
@@ -197,6 +198,15 @@ class QUBOProblem(StrictModel):
     metadata: dict[str, Any] = Field(default_factory=dict)
 
 
+class QUBOBatchEvaluation(StrictModel):
+    values: list[float]
+    backend: Literal["python_cpu", "torch_supa"]
+    device_count: int = 0
+    wall_time_seconds: float = Field(default=0.0, ge=0.0)
+    fallback: bool = False
+    warnings: list[str] = Field(default_factory=list)
+
+
 class WarmStartArtifact(StrictModel):
     bitstring: list[int]
     candidate_ids: list[str]
@@ -274,7 +284,7 @@ class VerificationReport(StrictModel):
 class RunManifest(StrictModel):
     run_id: str
     round_id: str
-    created_at: datetime = Field(default_factory=lambda: datetime.now(UTC))
+    created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
     status: RunStatus = RunStatus.DRAFT
     dataset_id: str
     config_hash: str

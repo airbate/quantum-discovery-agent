@@ -71,6 +71,18 @@ class AgentOrchestrator:
         emit("audit_dataset", "success", next_allowed_tools=["fit_surrogate"])
         emit("fit_surrogate", "success", model_id=result.model_report.model_id, next_allowed_tools=["compile_qubo"])
         emit("compile_qubo", "success", next_allowed_tools=["solve_batch"])
+        scoring_artifacts = [
+            artifact.resource_usage
+            for artifact in result.solver_artifacts
+            if "qiskit_aer" in artifact.resource_usage.backend
+        ]
+        emit(
+            "evaluate_qubo_batch",
+            "success",
+            backends=sorted({usage.backend for usage in scoring_artifacts}),
+            fallback=any(usage.fallback for usage in scoring_artifacts),
+            next_allowed_tools=["solve_batch"],
+        )
         emit("solve_batch", "success", solver_count=len(result.solver_artifacts), next_allowed_tools=["verify_solution"])
         emit(
             "verify_solution",

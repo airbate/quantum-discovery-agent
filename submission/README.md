@@ -21,7 +21,15 @@ submission/
 ├── results/
 │   ├── verification_report.md
 │   ├── performance_report.md
-│   └── linux_environment_report.md
+│   ├── linux_environment_report.md
+│   └── biren_single_card/
+│       ├── README.md
+│       ├── environment.log
+│       ├── supa-correctness.json
+│       ├── demo-result.json
+│       ├── benchmark-result.json
+│       ├── accelerator.log
+│       └── SHA256SUMS.txt
 ├── agent_logs/
 │   ├── interaction_01.md
 │   ├── interaction_02.md
@@ -40,6 +48,7 @@ submission/
 - `scripts/run_correctness.py`：正确性验证入口。
 - `scripts/run_benchmark.py`：多随机种子性能/稳定性入口。
 - `scripts/run_demo.py`：单样例演示入口。
+- `scripts/run_supa_correctness.py`：CPU/SUPA 批量 QUBO 评分正确性与性能对照。
 - `pyproject.toml`：依赖和开发环境声明。
 - `Dockerfile`、`.dockerignore`：Linux 容器构建环境。
 - `environment.yml`：Linux/服务器 Conda 环境。
@@ -65,10 +74,19 @@ python scripts/run_benchmark.py --seeds 1,2,3,4,5 \
 
 `docs/` 中的 PDF 由对应 Markdown 源文件导出，适合作为报名系统的展示文档；若系统只接受单个文件，优先上传 PDF，同时保留 Markdown 和源码用于复核。
 
+## 壁仞单卡复现
+
+```bash
+source /usr/local/birensupa/sdk/1.11.0.0.rc2/scripts/brsw_set_env.sh >/dev/null
+python3 -m pip install -e ".[dev,quantum]"
+python3 scripts/run_supa_correctness.py --device supa
+python3 scripts/run_demo.py --qubo-device supa --output artifacts/biren-demo.json
+```
+
+实测原始证据已归档在 `results/biren_single_card/`。Qiskit Aer 线路模拟运行在 CPU；SUPA GPU 负责 QAOA 批量 QUBO 能量评分，二者在资源字段中分别记录。
+
 ## 提交前替换项
 
 当前 `data/examples/demo_candidates.csv` 是合成数据，仅用于验证软件链路。正式科研展示应替换为公开或已授权数据，并同步更新 `docs/data_provenance.md`、配置中的 `dataset_id`、数据快照哈希和许可证说明。
 
-如在壁仞 GPU 平台运行，应在 `docs/results_analysis.md` 中补充机器型号、驱动/软件栈、GPU 参与环节和单卡日志；当前报告中的本地运行数据不得冒充壁仞 GPU 实测数据。
-
-逐项提交状态见 [`COMPLIANCE_CHECKLIST.md`](./COMPLIANCE_CHECKLIST.md)。目前唯一不能在本地替代的关键材料是壁仞单卡实机证据；在最终机器运行 `bash scripts/collect_single_card_evidence.sh` 后，将生成目录连同截图一起归档。
+逐项提交状态见 [`COMPLIANCE_CHECKLIST.md`](./COMPLIANCE_CHECKLIST.md)。正式上传前仍建议补充 `brsmi` 和演示页面截图，并在最终 Git commit 上重跑一次证据采集脚本。

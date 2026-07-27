@@ -17,8 +17,12 @@ def main() -> None:
     parser.add_argument("--config", default="data/examples/demo_config.json")
     parser.add_argument("--data", default="data/examples/demo_candidates.csv")
     parser.add_argument("--output", default="artifacts/demo-result.json")
+    parser.add_argument("--qubo-device", choices=("cpu", "supa", "auto"))
     args = parser.parse_args()
     config = json.loads(Path(args.config).read_text(encoding="utf-8"))
+    if args.qubo_device:
+        config["solver"] = dict(config["solver"])
+        config["solver"]["qubo_evaluation_device"] = args.qubo_device
     spec = ExperimentDesignSpec.model_validate(config)
     candidates, observations = load_candidates_csv(
         args.data,

@@ -1,0 +1,2 @@
+$ /usr/bin/python3 scripts/run_correctness.py
+correctness passed: 15 feasible combinations; best=1.225782
