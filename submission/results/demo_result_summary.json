@@ -1,0 +1,53 @@
+{
+  "run_id": "demo-run-001",
+  "round_id": "round_01",
+  "status": "verified",
+  "backend": "qiskit_aer",
+  "fallback": false,
+  "recommendations": [
+    {
+      "batch_id": "batch_00",
+      "candidate_ids": ["c08", "c10", "c13"],
+      "solver_kind": "warm_start_xy_qaoa",
+      "predicted_objective": 1.713724895276412,
+      "cost": 3.3
+    },
+    {
+      "batch_id": "batch_01",
+      "candidate_ids": ["c05", "c06", "c10"],
+      "solver_kind": "greedy",
+      "predicted_objective": 1.6697253454945586,
+      "cost": 3.8
+    },
+    {
+      "batch_id": "batch_02",
+      "candidate_ids": ["c10", "c11", "c14"],
+      "solver_kind": "greedy",
+      "predicted_objective": 1.9898512777551272,
+      "cost": 3.7
+    },
+    {
+      "batch_id": "batch_03",
+      "candidate_ids": ["c04", "c08", "c13"],
+      "solver_kind": "greedy",
+      "predicted_objective": 1.6654386623271538,
+      "cost": 3.2
+    }
+  ],
+  "verification": {
+    "status": "passed",
+    "is_feasible": true,
+    "objective_reported": 1.713724895276412,
+    "objective_recomputed": 1.713724895276412,
+    "objective_abs_error": 0.0,
+    "feasible_rate": 1.0
+  },
+  "resources": {
+    "quantum_width": 16,
+    "circuit_depth": 1,
+    "shots": 128,
+    "objective_calls": 8,
+    "qaoa_wall_time_seconds": 0.37810316699324176
+  },
+  "source_artifact": "../../artifacts/submission-demo.json"
+}

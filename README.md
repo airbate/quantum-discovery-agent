@@ -49,3 +49,9 @@ python scripts/export_report.py artifacts/demo-result.json --output artifacts/de
 - [产品需求文档](./PRD.md)
 - [实现 Spec](./IMPLEMENTATION-SPEC.md)
 - [Agent/Skill 说明](./skill.md)
+- [比赛提交材料索引](./submission/README.md)
+- [提交材料清单](./submission/MANIFEST.md)
+
+## 参赛材料
+
+`submission/` 包含场景说明、方法说明、数据使用声明、正确性/性能报告、5 段 Agent/Skill 交互记录和演示脚本。提交时请将整个仓库作为源码包上传，并按 `submission/MANIFEST.md` 检查材料。

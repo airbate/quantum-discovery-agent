@@ -1,0 +1,22 @@
+{
+  "seed_count": 5,
+  "seeds": [1, 2, 3, 4, 5],
+  "verified_runs": 5,
+  "feasible_rate": 1.0,
+  "warm_start_xy_qaoa": {
+    "objective_mean": 1.9406056550359092,
+    "objective_std": 0.06872001872468782,
+    "runtime_mean_seconds": 0.38812898341566326,
+    "feasible_rate": 1.0
+  },
+  "enumeration_reference": {
+    "objective_mean": 1.9898512777551272,
+    "runtime_mean_seconds": 0.009671391593292356,
+    "feasible_rate": 1.0
+  },
+  "penalty_qaoa_control": {
+    "feasible_rate": 0.4,
+    "note": "Infeasible samples are retained as a negative control and rejected by the verifier."
+  },
+  "source_artifact": "../../artifacts/submission-benchmark.json"
+}

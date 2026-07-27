@@ -6,5 +6,6 @@ artifacts/*.json
 artifacts/**/*.json
 artifacts/*.md
 artifacts/**/*.md
+artifacts/*.stdout
 *.egg-info/
 .DS_Store

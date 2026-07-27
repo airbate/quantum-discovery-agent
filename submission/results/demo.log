@@ -1,0 +1,8 @@
+$ python scripts/run_demo.py --output artifacts/submission-demo.json
+run_id=demo-run-001
+status=verified
+backend=qiskit_aer
+fallback=false
+qaoa_recommendation=c08,c10,c13
+objective_abs_error=0.0
+hard_constraints=passed

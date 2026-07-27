@@ -1,0 +1,4 @@
+$ python scripts/run_benchmark.py --seeds 1,2,3,4,5 --output artifacts/submission-benchmark.json
+seed_count=5
+verified_runs=5
+feasible_rate=1.0

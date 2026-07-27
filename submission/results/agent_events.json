@@ -1,0 +1,10 @@
+[
+  {"tool_name": "validate_design_spec", "status": "success", "next_allowed_tools": ["audit_dataset"]},
+  {"tool_name": "audit_dataset", "status": "started"},
+  {"tool_name": "audit_dataset", "status": "success", "next_allowed_tools": ["fit_surrogate"]},
+  {"tool_name": "fit_surrogate", "status": "success", "next_allowed_tools": ["compile_qubo"]},
+  {"tool_name": "compile_qubo", "status": "success", "next_allowed_tools": ["solve_batch"]},
+  {"tool_name": "solve_batch", "status": "success", "next_allowed_tools": ["verify_solution"]},
+  {"tool_name": "verify_solution", "status": "success", "feasible": true, "next_allowed_tools": ["export_run_report"]},
+  {"tool_name": "export_run_report", "status": "success", "recommendation_count": 4}
+]

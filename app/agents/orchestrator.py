@@ -14,7 +14,13 @@ def parse_experiment_goal(text: str, default_batch_size: int = 5) -> dict[str, A
     The parser extracts only safe, typed fields. It never evaluates text as code.
     """
     batch_match = re.search(r"(?:选择|选|batch|批次|实验数)\s*(?:恰好)?\s*(\d+)\s*(?:个|次|experiments?)?", text, re.IGNORECASE)
-    budget_match = re.search(r"(?:预算|budget|cost)\s*[:：=]?\s*(\d+(?:\.\d+)?)", text, re.IGNORECASE)
+    budget_match = re.search(
+        r"(?:预算|(?:总)?成本|budget|cost)\s*"
+        r"(?:不超过|不高于|不大于|上限|<=|≤)?\s*"
+        r"[:：=]?\s*(\d+(?:\.\d+)?)",
+        text,
+        re.IGNORECASE,
+    )
     size = int(batch_match.group(1)) if batch_match else default_batch_size
     budget = float(budget_match.group(1)) if budget_match else None
     direction = "minimize" if any(word in text.lower() for word in ["最小", "降低", "minimize", "minimise"]) else "maximize"
