@@ -8,6 +8,7 @@
 submission/
 ├── README.md
 ├── MANIFEST.md
+├── COMPLIANCE_CHECKLIST.md
 ├── docs/
 │   ├── scene_description.md
 │   ├── scene_description.pdf
@@ -15,7 +16,8 @@ submission/
 │   ├── method_description.pdf
 │   ├── results_analysis.md
 │   ├── results_analysis.pdf
-│   └── data_provenance.md
+│   ├── data_provenance.md
+│   └── open_source_attribution.md
 ├── results/
 │   ├── verification_report.md
 │   ├── performance_report.md
@@ -42,6 +44,7 @@ submission/
 - `Dockerfile`、`.dockerignore`：Linux 容器构建环境。
 - `environment.yml`：Linux/服务器 Conda 环境。
 - `scripts/run_linux.sh`：容器内完整正确性与性能复现入口。
+- `scripts/collect_single_card_evidence.sh`：最终单卡平台的环境、设备、日志、结果和哈希采集入口。
 - `data/examples/`：可公开分发的合成演示数据和配置。
 
 ## 一键复现
@@ -67,3 +70,5 @@ python scripts/run_benchmark.py --seeds 1,2,3,4,5 \
 当前 `data/examples/demo_candidates.csv` 是合成数据，仅用于验证软件链路。正式科研展示应替换为公开或已授权数据，并同步更新 `docs/data_provenance.md`、配置中的 `dataset_id`、数据快照哈希和许可证说明。
 
 如在壁仞 GPU 平台运行，应在 `docs/results_analysis.md` 中补充机器型号、驱动/软件栈、GPU 参与环节和单卡日志；当前报告中的本地运行数据不得冒充壁仞 GPU 实测数据。
+
+逐项提交状态见 [`COMPLIANCE_CHECKLIST.md`](./COMPLIANCE_CHECKLIST.md)。目前唯一不能在本地替代的关键材料是壁仞单卡实机证据；在最终机器运行 `bash scripts/collect_single_card_evidence.sh` 后，将生成目录连同截图一起归档。

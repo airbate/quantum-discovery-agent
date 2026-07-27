@@ -23,7 +23,10 @@
 | Agent/Skill 交互日志 | `submission/agent_logs/interaction_01.md` 至 `interaction_05.md` |
 | 场景和方法说明 | `submission/docs/scene_description.pdf`、`submission/docs/method_description.pdf`（源文件为同名 `.md`，样式为 `pdf.css`） |
 | 数据使用声明 | `submission/docs/data_provenance.md` |
+| 开源资源来源声明 | `submission/docs/open_source_attribution.md` |
 | 演示脚本 | `submission/demo/demo_script.md` |
+| 逐项合规检查 | `submission/COMPLIANCE_CHECKLIST.md` |
+| 单卡证据采集 | `scripts/collect_single_card_evidence.sh`（须在最终单卡平台执行） |
 
 ## 复现记录
 
@@ -37,3 +40,5 @@
 ## 诚实性声明
 
 本仓库不宣称量子优势。QAOA 结果来自 Qiskit Aer 模拟器；当量子依赖不可用或后端失败时，会显式进入带警告的量子启发式回退。演示数据为合成反应条件数据，不代表真实湿实验结论。
+
+现有运行结果来自 CPU 环境，不是壁仞 GPU 单卡实测。仅当设备日志和计算后端共同证明 GPU 参与时，才可在最终材料中表述为 GPU 加速；否则应表述为“在壁仞主机/容器上运行，核心量子模拟仍由 CPU 完成”。
