@@ -1,0 +1,35 @@
+{
+  "run_id": "demo-run-001",
+  "name": "Suzuki batch demo",
+  "domain": "reaction_condition_optimization",
+  "objective": {"metric": "yield", "direction": "maximize", "unit": "fraction"},
+  "candidate_source": {
+    "dataset_id": "demo_candidates",
+    "candidate_id_column": "candidate_id",
+    "feature_columns": ["ligand", "solvent", "base", "temperature"],
+    "observed_target_column": "yield"
+  },
+  "batch": {"size": 3, "total_budget": 5.0, "max_runtime_minutes": 300},
+  "preferences": {
+    "exploitation": 0.40,
+    "exploration": 0.25,
+    "diversity": 0.20,
+    "cost": 0.10,
+    "risk": 0.05
+  },
+  "hard_constraints": [
+    {"type": "exact_cardinality", "value": 3},
+    {"type": "max_cost", "value": 5.0}
+  ],
+  "solver": {
+    "kind": "warm_start_xy_qaoa",
+    "max_quantum_width": 16,
+    "p": 1,
+    "shots": 128,
+    "angle_optimizer": "bayesian",
+    "max_objective_calls": 8,
+    "seed": 20260727,
+    "backend": "auto",
+    "noise_model": "none"
+  }
+}

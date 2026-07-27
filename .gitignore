@@ -1,0 +1,10 @@
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+artifacts/*.json
+artifacts/**/*.json
+artifacts/*.md
+artifacts/**/*.md
+*.egg-info/
+.DS_Store
