@@ -13,10 +13,15 @@
 | Streamlit | 可选演示界面 | <https://github.com/streamlit/streamlit> | Apache-2.0 |
 | pytest | 自动化测试 | <https://github.com/pytest-dev/pytest> | MIT |
 | HTTPX | API 集成测试 | <https://github.com/encode/httpx> | BSD-3-Clause |
+| HyperFrames | HTML 动效视频的校验与确定性 MP4 渲染 | <https://github.com/heygen-com/hyperframes> | Apache-2.0 |
+| GSAP | 视频中的帧级时间线动画 | <https://gsap.com/> | GSAP Standard License |
+| FFmpeg | 最终视频转码与兼容性检查 | <https://ffmpeg.org/> | LGPL/GPL，取决于构建选项 |
 
 竞赛 Docker 另行预装 SUPA SDK、`torch_br`、UnitaryLab 和 `unitarylab_algorithms`。这些组件用于壁仞单卡适配和环境验证，不随本仓库再分发；版本和路径以 `submission/results/biren_single_card/environment.log` 为准，使用权限遵循竞赛平台提供方条款。
 
 实际安装版本由 `pyproject.toml`、容器构建日志和 `python -m pip freeze` 共同确定。正式归档时应保存依赖锁定清单或容器镜像摘要；上游版权和许可证归各自权利人所有。
+
+概念讲解的视觉源稿使用 HyperFrames 和 GSAP 制作；两支最终成片由参赛者在剪映中剪辑，并使用 FFmpeg 转换为 GitHub 可直接打开的 H.264/AAC MP4。仓库只提交最终视频，不再分发剪映工程、缓存或第三方素材。参赛者对最终视频中使用的旁白、字幕、音乐和画面素材承担授权责任。
 
 ## 数据与论文
 

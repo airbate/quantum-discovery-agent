@@ -1,8 +1,17 @@
-# Q-Discovery Agent
+# QuantumPilot
 
-> 面向下一代 AI for Science 的量子原生科研决策引擎：让智能体帮助科学家更快地提出假设、搜索实验空间、组织验证证据。
+> Q-Discovery Agent · 面向 AI for Science 的自验证量子—经典科研实验导航 Skill。
 
-Q-Discovery Agent 不只是一个“会调用量子线路的聊天机器人”，而是一个连接**自然语言科研目标、科学数据、代理模型、量子组合优化与实验验证**的科研智能体原型。它把实验室中高成本、强约束、需要持续迭代的“下一步做什么”转化为可计算、可解释、可审计的决策流程。
+## 立即查看
+
+| 材料 | 内容 | 一键入口 |
+| --- | --- | --- |
+| 项目概念讲解 | 2 分 16 秒，介绍问题、方法、应用场景与能力边界 | [▶ 直接播放 MP4](https://raw.githubusercontent.com/airbate/quantum-discovery-agent/main/submission/demo/QuantumPilot_%E9%A1%B9%E7%9B%AE%E6%A6%82%E5%BF%B5%E8%AE%B2%E8%A7%A3_%E5%89%AA%E6%98%A0%E6%88%90%E7%89%87.mp4) |
+| Skill 实际操作 | 约 3 分 45 秒，展示自然语言任务、求解结果与独立验证 | [▶ 直接播放 MP4](https://raw.githubusercontent.com/airbate/quantum-discovery-agent/main/submission/demo/QuantumPilot_Skill%E5%AE%9E%E9%99%85%E6%93%8D%E4%BD%9C%E6%BC%94%E7%A4%BA_%E5%89%AA%E6%98%A0%E6%88%90%E7%89%87.mp4) |
+| 学术答辩材料 | 12 页方法、结果、平台证据与应用边界 | [在线查看](https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fraw.githubusercontent.com%2Fairbate%2Fquantum-discovery-agent%2Fmain%2Fsubmission%2Fpresentation%2FQuantumPilot_%E5%AD%A6%E6%9C%AF%E7%AD%94%E8%BE%A9%E7%A8%BF.pptx) · [下载 PPTX](https://raw.githubusercontent.com/airbate/quantum-discovery-agent/main/submission/presentation/QuantumPilot_%E5%AD%A6%E6%9C%AF%E7%AD%94%E8%BE%A9%E7%A8%BF.pptx) |
+| 提交证据索引 | 场景、方法、日志、验证、性能和单卡证据 | [打开 submission](./submission/README.md) |
+
+QuantumPilot 连接**自然语言科研目标、科学数据、代理模型、量子组合优化与独立验证**，把实验室中高成本、强约束、需要持续迭代的“下一步做什么”转化为可计算、可解释、可审计的决策流程。
 
 面向 2026 书生国智科探挑战赛暨飞翔杯 AI Agent/Skills 开发大赛·量子计算赛道，系统将科研人员的自然语言目标转换为多目标组合优化问题：先审计数据、估计候选条件的收益与不确定性，再编译 QUBO，使用 Warm Start XY-QAOA 和经典基线生成下一批实验，最后由独立验证器决定结果能否进入科研工作流。
 
@@ -10,7 +19,7 @@ Q-Discovery Agent 不只是一个“会调用量子线路的聊天机器人”�
 
 ## 一句话路演
 
-**Q-Discovery Agent 正在构建一个“科研实验导航系统”：它不替科学家做结论，而是把有限预算下的假设空间搜索、实验批次选择和证据链组织变成可复现的量子—经典协同流程。**
+**QuantumPilot 不替科学家做结论；它把有限预算下的候选搜索、实验批次选择和证据链组织变成可复现的量子—经典协同流程。**
 
 ## 先看结果
 
@@ -34,7 +43,7 @@ Q-Discovery Agent 不只是一个“会调用量子线路的聊天机器人”�
 
 当前原型以反应条件筛选为示范入口，但底层抽象并不绑定某一种化学反应：只要问题能够表达为“候选集合 + 观测历史 + 资源约束 + 多目标偏好”，就可以复用同一套 Agent、代理模型、QUBO 和验证器。
 
-| 未来应用空间 | 可被优化的科研问题 | Q-Discovery Agent 的角色 |
+| 未来应用空间 | 可被优化的科研问题 | QuantumPilot 的角色 |
 | --- | --- | --- |
 | 药物与生命科学 | 候选分子、组合实验、活性/毒性权衡 | 在预算约束下安排下一轮验证实验 |
 | 材料与能源 | 配方、工艺窗口、电池材料组合 | 探索性能—成本—风险的 Pareto 前沿 |
@@ -50,7 +59,7 @@ Q-Discovery Agent 不只是一个“会调用量子线路的聊天机器人”�
 
 ### 1. 从“优化一次实验”到“导航整个假设空间”
 
-科研探索的瓶颈往往不是提出一个候选，而是在有限时间、预算和样本量下，决定下一步验证哪一个假设。Q-Discovery Agent 将一次性优化升级为可持续迭代的实验设计循环：每轮吸收新观测，更新不确定性，再重新寻找最值得验证的候选组合。
+科研探索的瓶颈往往不是提出一个候选，而是在有限时间、预算和样本量下，决定下一步验证哪一个假设。QuantumPilot 将一次性优化升级为可持续迭代的实验设计循环：每轮吸收新观测，更新不确定性，再重新寻找最值得验证的候选组合。
 
 ### 2. 量子计算参与核心决策
 
@@ -232,17 +241,20 @@ environment.yml       # Conda Linux/服务器环境
 
 ## 工程质量
 
-- 11 个自动化测试通过，覆盖领域模型、QUBO、SUPA 评估器、求解器、API 和端到端流程；
+- 12 个自动化测试通过，覆盖领域模型、QUBO、SUPA 评估器、求解器、API 和端到端流程；
 - Ruff 静态检查通过；
 - 正确性脚本独立重算目标值，阈值为 `1e-8`；
 - 所有求解结果记录随机种子、后端、宽度、深度、shots、调用数、耗时和回退状态；
-- `skill.md` 明确能力边界、工具链、输入输出和失败策略。
+- `SKILL.md` 具有标准 frontmatter，并明确能力边界、工具链、输入输出和失败策略。
 
 ## 竞赛材料
 
 提交包已经整理在 [`submission/`](./submission/)：
 
 - [提交材料索引](./submission/README.md)
+- [项目概念讲解视频](https://raw.githubusercontent.com/airbate/quantum-discovery-agent/main/submission/demo/QuantumPilot_%E9%A1%B9%E7%9B%AE%E6%A6%82%E5%BF%B5%E8%AE%B2%E8%A7%A3_%E5%89%AA%E6%98%A0%E6%88%90%E7%89%87.mp4)
+- [Skill 实际操作视频](https://raw.githubusercontent.com/airbate/quantum-discovery-agent/main/submission/demo/QuantumPilot_Skill%E5%AE%9E%E9%99%85%E6%93%8D%E4%BD%9C%E6%BC%94%E7%A4%BA_%E5%89%AA%E6%98%A0%E6%88%90%E7%89%87.mp4)
+- [学术答辩 PPT](https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fraw.githubusercontent.com%2Fairbate%2Fquantum-discovery-agent%2Fmain%2Fsubmission%2Fpresentation%2FQuantumPilot_%E5%AD%A6%E6%9C%AF%E7%AD%94%E8%BE%A9%E7%A8%BF.pptx)
 - [提交清单](./submission/MANIFEST.md)
 - [场景说明 PDF](./submission/docs/scene_description.pdf)
 - [方法说明 PDF](./submission/docs/method_description.pdf)
@@ -258,5 +270,5 @@ environment.yml       # Conda Linux/服务器环境
 
 - [产品需求文档](./PRD.md)
 - [实现 Spec](./IMPLEMENTATION-SPEC.md)
-- [Agent/Skill 说明](./skill.md)
+- [Agent/Skill 说明](./SKILL.md)
 - [数据说明](./data/examples/README.md)

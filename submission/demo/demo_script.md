@@ -50,5 +50,6 @@ validate_design_spec
 
 ```bash
 python scripts/run_correctness.py
-python scripts/run_demo.py --output artifacts/submission-demo.json
+python scripts/run_demo.py --qubo-device cpu \
+  --output artifacts/submission-demo.json
 ```

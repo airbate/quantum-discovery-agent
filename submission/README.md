@@ -1,8 +1,28 @@
-# Q-Discovery Agent 提交材料包
+# QuantumPilot 提交材料
 
-本目录是量子计算赛道的初评材料索引。源码和可复现实验入口位于仓库根目录；提交时将整个仓库打包，或把根目录作为 `code/` 一并上传。
+> 2026 书生国智科探挑战赛暨飞翔杯 AI Agent/Skills 开发大赛 · 量子计算赛道
 
-## 目录
+## 立即查看
+
+| 材料 | 说明 | 一键入口 |
+| --- | --- | --- |
+| 项目概念讲解 | 2 分 16 秒，介绍科研问题、量子方法、应用场景与能力边界 | [▶ 直接播放 MP4](https://raw.githubusercontent.com/airbate/quantum-discovery-agent/main/submission/demo/QuantumPilot_%E9%A1%B9%E7%9B%AE%E6%A6%82%E5%BF%B5%E8%AE%B2%E8%A7%A3_%E5%89%AA%E6%98%A0%E6%88%90%E7%89%87.mp4) |
+| Skill 实际操作 | 约 3 分 45 秒，展示自然语言任务、推荐结果、资源记录和验证链路 | [▶ 直接播放 MP4](https://raw.githubusercontent.com/airbate/quantum-discovery-agent/main/submission/demo/QuantumPilot_Skill%E5%AE%9E%E9%99%85%E6%93%8D%E4%BD%9C%E6%BC%94%E7%A4%BA_%E5%89%AA%E6%98%A0%E6%88%90%E7%89%87.mp4) |
+| 学术答辩材料 | 12 页方法、实测结果、壁仞平台证据和应用边界 | [在线查看](https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fraw.githubusercontent.com%2Fairbate%2Fquantum-discovery-agent%2Fmain%2Fsubmission%2Fpresentation%2FQuantumPilot_%E5%AD%A6%E6%9C%AF%E7%AD%94%E8%BE%A9%E7%A8%BF.pptx) · [下载 PPTX](https://raw.githubusercontent.com/airbate/quantum-discovery-agent/main/submission/presentation/QuantumPilot_%E5%AD%A6%E6%9C%AF%E7%AD%94%E8%BE%A9%E7%A8%BF.pptx) |
+
+## 提交入口
+
+- Skill 定义：[根目录 `SKILL.md`](../SKILL.md)
+- 源码：[`app/`](../app/) 与 [`ui/`](../ui/)
+- 完整依赖：[`pyproject.toml`](../pyproject.toml)、[`environment.yml`](../environment.yml)、[`Dockerfile`](../Dockerfile)
+- 一键演示：[`scripts/run_demo.py`](../scripts/run_demo.py)
+- 正确性验证：[`scripts/run_correctness.py`](../scripts/run_correctness.py)
+- 性能评测：[`scripts/run_benchmark.py`](../scripts/run_benchmark.py)
+- 壁仞证据采集：[`scripts/collect_single_card_evidence.sh`](../scripts/collect_single_card_evidence.sh)
+- 逐项材料映射：[`MANIFEST.md`](./MANIFEST.md)
+- 合规检查：[`COMPLIANCE_CHECKLIST.md`](./COMPLIANCE_CHECKLIST.md)
+
+## 材料目录
 
 ```text
 submission/
@@ -10,25 +30,25 @@ submission/
 ├── MANIFEST.md
 ├── COMPLIANCE_CHECKLIST.md
 ├── docs/
-│   ├── scene_description.md
-│   ├── scene_description.pdf
-│   ├── method_description.md
-│   ├── method_description.pdf
-│   ├── results_analysis.md
-│   ├── results_analysis.pdf
+│   ├── scene_description.md / .pdf
+│   ├── method_description.md / .pdf
+│   ├── results_analysis.md / .pdf
 │   ├── data_provenance.md
 │   └── open_source_attribution.md
 ├── results/
 │   ├── verification_report.md
 │   ├── performance_report.md
 │   ├── linux_environment_report.md
+│   ├── correctness.log
+│   ├── benchmark.log
 │   └── biren_single_card/
 │       ├── README.md
 │       ├── environment.log
-│       ├── supa-correctness.json
-│       ├── demo-result.json
-│       ├── benchmark-result.json
+│       ├── supa-correctness.json / .log
+│       ├── demo-result.json / .log
+│       ├── benchmark-result.json / .log
 │       ├── accelerator.log
+│       ├── pytest.log
 │       └── SHA256SUMS.txt
 ├── agent_logs/
 │   ├── interaction_01.md
@@ -36,57 +56,48 @@ submission/
 │   ├── interaction_03.md
 │   ├── interaction_04.md
 │   └── interaction_05.md
-└── demo/
-    └── demo_script.md
+├── demo/
+│   ├── QuantumPilot_项目概念讲解_剪映成片.mp4
+│   ├── QuantumPilot_Skill实际操作演示_剪映成片.mp4
+│   ├── actual_demo_video_script.md
+│   ├── demo_script.md
+│   └── presentation_outline.md
+└── presentation/
+    └── QuantumPilot_学术答辩稿.pptx
 ```
-
-## 根目录中的必交文件
-
-- `skill.md`：Agent/Skill 能力边界、工具链路和交互契约。
-- `app/`：源码。
-- `tests/`：单元、集成和端到端测试。
-- `scripts/run_correctness.py`：正确性验证入口。
-- `scripts/run_benchmark.py`：多随机种子性能/稳定性入口。
-- `scripts/run_demo.py`：单样例演示入口。
-- `scripts/run_supa_correctness.py`：CPU/SUPA 批量 QUBO 评分正确性与性能对照。
-- `pyproject.toml`：依赖和开发环境声明。
-- `Dockerfile`、`.dockerignore`：Linux 容器构建环境。
-- `environment.yml`：Linux/服务器 Conda 环境。
-- `scripts/run_linux.sh`：容器内完整正确性与性能复现入口。
-- `scripts/collect_single_card_evidence.sh`：最终单卡平台的环境、设备、日志、结果和哈希采集入口。
-- `data/examples/`：可公开分发的合成演示数据和配置。
 
 ## 一键复现
 
 ```bash
 python3 -m venv .venv
 source .venv/bin/activate
-python -m pip install -e ".[dev,quantum]"
+python -m pip install -e ".[dev,quantum,ui]"
+
 python scripts/run_correctness.py
-python scripts/run_demo.py --output artifacts/submission-demo.json
+python scripts/run_demo.py --qubo-device cpu \
+  --output artifacts/submission-demo.json
 python scripts/run_benchmark.py --seeds 1,2,3,4,5 \
   --output artifacts/submission-benchmark.json
+python -m pytest -q
 ```
 
-`run_demo.py` 默认使用 Qiskit Aer；没有安装可选量子依赖时，系统会明确标注 `fallback=true`，不得将回退结果描述为硬件量子优势。
-
-`submission/results/` 中的摘要 JSON 和日志是可直接上传的轻量证据；完整 artifact JSON 由复现命令生成到 `artifacts/`，该目录中的中间文件默认不纳入源码提交。
-
-`docs/` 中的 PDF 由对应 Markdown 源文件导出，适合作为报名系统的展示文档；若系统只接受单个文件，优先上传 PDF，同时保留 Markdown 和源码用于复核。
+预期结果为 `correctness passed`、演示状态 `verified`、五种子最终推荐可行率 `1.0` 和 `12 passed`。未安装 Qiskit 时会明确标记 `fallback=true`，该结果只能用于验证软件链路。
 
 ## 壁仞单卡复现
 
 ```bash
 source /usr/local/birensupa/sdk/1.11.0.0.rc2/scripts/brsw_set_env.sh >/dev/null
 python3 -m pip install -e ".[dev,quantum]"
-python3 scripts/run_supa_correctness.py --device supa
-python3 scripts/run_demo.py --qubo-device supa --output artifacts/biren-demo.json
+python3 scripts/run_supa_correctness.py --device supa \
+  --output artifacts/supa-correctness.json
+python3 scripts/run_demo.py --qubo-device supa \
+  --output artifacts/biren-demo.json
+python3 scripts/run_benchmark.py --seeds 1,2,3,4,5 \
+  --qubo-device supa --output artifacts/biren-benchmark.json
 ```
 
-实测原始证据已归档在 `results/biren_single_card/`。Qiskit Aer 线路模拟运行在 CPU；SUPA GPU 负责 QAOA 批量 QUBO 能量评分，二者在资源字段中分别记录。
+Qiskit Aer 在线路模拟环节运行于 CPU；SUPA GPU 用于批量 QUBO 能量评分。所有原始服务器日志、结果和 SHA-256 位于 [`results/biren_single_card/`](./results/biren_single_card/)。
 
-## 提交前替换项
+## 结果边界
 
-当前 `data/examples/demo_candidates.csv` 是合成数据，仅用于验证软件链路。正式科研展示应替换为公开或已授权数据，并同步更新 `docs/data_provenance.md`、配置中的 `dataset_id`、数据快照哈希和许可证说明。
-
-逐项提交状态见 [`COMPLIANCE_CHECKLIST.md`](./COMPLIANCE_CHECKLIST.md)。正式上传前仍建议补充 `brsmi` 和演示页面截图，并在最终 Git commit 上重跑一次证据采集脚本。
+当前候选数据是合成验收数据，用于证明软件闭环、约束验证和平台复现，不代表真实湿实验发现。Qiskit Aer 是量子线路模拟器；项目不宣称量子硬件执行或量子优势。`1.612×` 仅对应本次 SUPA 批量 QUBO 评分内核实测，不代表端到端系统加速比。

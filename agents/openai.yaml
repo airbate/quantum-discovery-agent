@@ -1,0 +1,7 @@
+interface:
+  display_name: "QuantumPilot"
+  short_description: "把科研目标转化为可验证的量子—经典实验推荐"
+  default_prompt: "Use $quantum-pilot to select and verify the next batch of experiments under my scientific constraints."
+
+policy:
+  allow_implicit_invocation: true

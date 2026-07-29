@@ -41,6 +41,9 @@ def test_run_api_exposes_verified_recommendation():
     assert body["recommendations"]
     assert len(body["agent_events"]) >= 5
     assert any(event["tool_name"] == "evaluate_qubo_batch" for event in body["agent_events"])
+    export_event = next(event for event in body["agent_events"] if event["tool_name"] == "export_run_report")
+    assert export_event["primary_candidate_count"] == len(body["recommendations"][0]["candidate_ids"]) == 2
+    assert export_event["recommendation_variant_count"] == len(body["recommendations"])
     assert body["recommendations"][0]["resource_usage"]["fallback"] is True
     assert any("manifest.json#" in artifact for artifact in body["verification"]["artifact_ids"])
     imported = client.post(

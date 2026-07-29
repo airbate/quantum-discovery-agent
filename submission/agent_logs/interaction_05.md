@@ -23,10 +23,11 @@
   "objective_recomputed": 1.713724895276412,
   "objective_abs_error": 0.0,
   "is_feasible": true,
-  "recommendation_count": 4
+  "primary_candidate_count": 3,
+  "recommendation_variant_count": 4
 }
 ```
 
 ## 有效性
 
-验证器重新计算硬约束和目标函数；不满足固定基数、预算或目标一致性的解不会进入正式推荐。完整链路保存了 13 个 artifact，并由 `manifest.json` 索引。
+`primary_candidate_count=3` 表示主批次恰好选择 3 个候选；`recommendation_variant_count=4` 表示系统同时导出主推荐、高产率、高信息增益和低成本风险四种策略。验证器重新计算硬约束和目标函数；不满足固定基数、预算或目标一致性的解不会进入正式推荐。完整链路保存了 13 个 artifact，并由 `manifest.json` 索引。

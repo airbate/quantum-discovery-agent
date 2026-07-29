@@ -90,7 +90,12 @@ class AgentOrchestrator:
             feasible=result.verification.is_feasible,
             next_allowed_tools=["export_run_report"],
         )
-        emit("export_run_report", "success", recommendation_count=len(result.recommendations))
+        emit(
+            "export_run_report",
+            "success",
+            recommendation_variant_count=len(result.recommendations),
+            primary_candidate_count=len(result.recommendations[0].candidate_ids) if result.recommendations else 0,
+        )
         result.agent_events = events
         if self.service.artifact_store is not None:
             event_artifact = self.service.artifact_store.write_json(
